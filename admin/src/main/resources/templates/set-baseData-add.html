@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css">
+    <link rel="stylesheet" type="text/css" href="css/frame.css">
+    <link rel="stylesheet" type="text/css" href="css/set.css">
+    <title>设置 -- 新增部门</title>
+</head>
+<body>
+<div th:fragment="base" style="height: 100%">
+    <div class="conter">
+        <div class="title">新增部门</div>
+        <div class="data-main">
+            <div class="data-list clearfix">
+                <div class="list-item-text fl" style="width: 80px">对比值</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="value" placeholder="请输入对比值">
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl" style="width: 80px">睡眠质量</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="sleepStatus"
+                               placeholder="请输入睡眠质量">
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl" style="width: 80px">监测维度</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="monitorDim"
+                               placeholder="请输入监测维度">
+                    </div>
+                </div>
+            </div>
+            <div class="mine-list trs clearfix">
+                <div class="list-item-text fl">建议</div>
+                <div class="list-item-main fl">
+                    <div class="dyui_input">
+                        <textarea class="dyui_input-inner dyui_input-focus dyui_input-text" type="text"
+                                  name="sleepAdvise" placeholder="请输入建议"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="data-btn">
+            <button type="button" class="dyui-btn dyui-btn-item" id="save">
+                <span>保存</span>
+            </button>
+            <button type="button" class="dyui-btn dyui-btn-default" id="quit">
+                <span>退出</span>
+            </button>
+        </div>
+    </div>
+    <script type="text/html" id="dept">
+        {{each data v i}}
+        <li class="trs">
+            <span data-superiorId="{{data[i].id}}">{{data[i].name}}</span>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/javascript" src="js/common.js"
+            th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+    <script type="text/javascript" src="js/template-web.js"
+            th:src="${#httpServletRequest.getContextPath()}+'/js/template-web.js'"></script>
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        $(function () {
+            if (sessionStorage.getItem("id")) {
+                let id = sessionStorage.getItem("id");
+                $.ajax({
+                    url: IP + "/baseData/" + id,
+                    type: "get",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.withCredentials = true;
+                    },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            let data = res.data;
+                            $("input[name='value']").val(data.value);
+                            $("input[name='sleepStatus']").val(data.sleepStatus);
+                            $("textarea[name='sleepAdvise']").val(data.sleepAdvise);
+                            $("input[name='monitorDim']").val(data.monitorDim)
+                        } else if (res.code === 1002) {
+                            window.location.href = IP + "/login.html"
+                        } else {
+                            layer.msg(res.data, {time: 500})
+                        }
+                    },
+                });
+            }
+            // 保存
+            $("#save").on("click", function () {
+                let url, method;
+                if (sessionStorage.getItem("id")) {
+                    url = "/baseData/update";
+                    method = "post"
+                } else {
+                    url = "/baseData/insert";
+                    method = "put"
+                }
+                $.ajax({
+                    url: IP + url,
+                    type: method,
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    data: {
+                        id: sessionStorage.getItem("id"),
+                        value: $("input[name='value']").val(),
+                        sleepStatus: $("input[name='sleepStatus']").val(),
+                        sleepAdvise: $("textarea[name='sleepAdvise']").val(),
+                        monitorDim: $("input[name='monitorDim']").val()
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.withCredentials = true;
+                    },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            sessionStorage.removeItem("id");
+                            menuSkip("set-baseData")
+                        }  else if (res.code === 1002) {
+                            window.location.href = IP + "/login.html"
+                        } else {
+                            layer.msg(res.data, {time: 500})
+                        }
+                    },
+                });
+            })
+        });
+
+
+        // 退出
+        $(function () {
+            $("#quit").on("click", function () {
+                sessionStorage.removeItem("id");
+                menuSkip("set-baseData")
+            })
+        })
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>

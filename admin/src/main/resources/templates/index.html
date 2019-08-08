@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/animate.min.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/animate.min.css'">
+    <link rel="stylesheet" type="text/css" href="../static/css/dyui.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/dyui.css'">
+    <link rel="stylesheet" type="text/css" href="../static/css/frame.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/frame.css'">
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/index.css'">
+    <title>首页</title>
+</head>
+<body>
+<div th:include="common::base"></div>
+<!-- 背景图 -->
+<div class="bg_img">
+    <img src="../static/images/bg1.png" th:src="${#httpServletRequest.getContextPath()}+'/images/bg1.png'">
+</div>
+
+<!-- 头部 -->
+<div class="header">
+    <div class="header-main clearfix">
+        <div class="logo fl">
+            <a href="javascript:;">广铁集团</a>
+        </div>
+        <div class="header-con">
+            <div class="header-menu">
+                <ul class="clearfix">
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="index.html">首页</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="report-per.html">个人报告</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-bg">
+                            <img src="../static/images/headbg1.png"
+                                 th:src="${#httpServletRequest.getContextPath()}+'/images/headbg1.png'">
+                            <div class="hear-bg-main">睡眠检测和无干扰叫班系统</div>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="report-team.html">团队报告</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="menu.html">设置</a>
+                        </div>
+                    </li>
+                    <li class="fl quit">
+                        <div class="hear-text">
+                            <a href="javascript:;">退出</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="user_info">
+                    <img src="" th:src="${#httpServletRequest.getContextPath()}+'/images/header1.png'" alt="">
+                    <span>张三</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 内容 -->
+<div class="wapper">
+    <div class="main">
+        <!-- 左侧 -->
+        <div class="left">
+            <div class="horn horn-top-left"></div>
+            <div class="horn horn-top-right"></div>
+            <div class="horn horn-bottom-left"></div>
+            <div class="horn horn-bottom-right"></div>
+            <!-- 一级 -->
+            <div class="box">
+                <div class="conter">
+                    <div class="nav-item">
+                        <div class="nav-title">
+
+                        </div>
+                        <ul class="topList">
+                            <!--渲染-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 二级 -->
+            <div class="menu">
+                <div class="horn horn-top-right"></div>
+                <div class="horn horn-bottom-right"></div>
+                <div class="box">
+                    <div class="conter">
+                        <div class="pack">
+                            <ul class="menu-open">
+                                <li>
+                                    <a href="javascript:;">
+                                        <em></em>
+                                        <span>待乘室</span>
+                                    </a>
+                                    <ul class="takeRoom">
+                                        <!--渲染-->
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <em></em>
+                                        <span>外公寓</span>
+                                    </a>
+                                    <ul class="outerRoom">
+                                        <!--渲染-->
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 中部 -->
+        <div class="middle">
+            <div class="horn horn-top-left"></div>
+            <div class="horn horn-top-right"></div>
+            <div class="horn horn-bottom-left"></div>
+            <div class="horn horn-bottom-right"></div>
+            <div class="box" style="overflow: visible">
+                <div class="conter" style="overflow: visible">
+                    <div class="middle-map">
+                        <div class="middle-map-text">广铁机务段示例图</div>
+                        <div class="middle-main">
+                            <img src="images/map.png" alt=""
+                                 th:src="${#httpServletRequest.getContextPath()}+'/images/map.png'">
+                            <div class="map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 右侧 -->
+        <div class="right">
+            <div class="right-time">
+                <div class="horn horn-top-left"></div>
+                <div class="horn horn-top-right"></div>
+                <div class="horn horn-bottom-left"></div>
+                <div class="horn horn-bottom-right"></div>
+                <div class="box">
+                    <div class="conter">
+                        <div class="pack">
+                            <div class="main-title">时间信息</div>
+                            <div class="time-main">
+                                <div class="time-years">
+                                    <span class="years-name">2019年4月10日</span>
+                                    <span class="week-name">星期三</span>
+                                </div>
+                                <div class="time-num">
+                                    <span class="time-num-main">09:30</span>
+                                    <span class="time-num-state">AM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-tolal">
+                <div class="horn horn-top-left"></div>
+                <div class="horn horn-top-right"></div>
+                <div class="horn horn-bottom-left"></div>
+                <div class="horn horn-bottom-right"></div>
+                <div class="box" style="padding-bottom: 0;padding-top: 5px">
+                    <div class="conter">
+                        <div class="pack">
+                            <div class="main-title">总体分析</div>
+                            <div class="tolal-main analyze" style="padding-top: 2px">
+                                <!--渲染-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-sleep">
+                <div class="horn horn-top-left"></div>
+                <div class="horn horn-top-right"></div>
+                <div class="horn horn-bottom-left"></div>
+                <div class="horn horn-bottom-right"></div>
+                <div class="box" style="padding-bottom: 0px">
+                    <div class="conter">
+                        <div class="pack total" style="opacity: 0;">
+                            <div class="main-title">睡眠质量分析</div>
+                            <div class="sleep-main">
+                                <div class="sleep-item clearfix" style="height: 50%">
+                                    <div class="sleep-img fl" style="height: 100%">
+                                        <div id="bight1" style="height: 100%"></div>
+                                    </div>
+                                    <div class="sleep-text fl">
+                                        <div class="sleep-title">睡眠时长分析</div>
+                                        <div class="sleep-info">
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor1"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>深睡</span>
+                                                    <span class="shen">34%</span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor2"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>入睡</span>
+                                                    <span class="sleepTime">34%</span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor3"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>浅睡</span>
+                                                    <span class="qian">16%</span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor4"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>其他</span>
+                                                    <span class="other">16%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sleep-item clearfix">
+                                    <div class="sleep-img fl">
+                                        <div id="bight2" style="height: 100%"></div>
+                                    </div>
+                                    <div class="sleep-text fl">
+                                        <div class="sleep-title">睡眠效率分析</div>
+                                        <div class="sleep-info">
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor5"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>0-23%</span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor6"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>24-47%</span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor7"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>48-67%</span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor8"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>68-83%</span>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix sleep-info-item">
+                                                <div class="fl sleep-info-bg">
+                                                    <span class="bgcolor9"></span>
+                                                </div>
+                                                <div class="fl sleep-info-text">
+                                                    <span>84-100%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--侧边-->
+<script type="text/html" id="topList">
+    {{each data v i}}
+    <li class="trs" data-id="{{data[i].id}}"
+        onclick="lookDetails({{data[i].id}},{{data[i].depttype}})"
+        data-dept="{{data[i].depttype}}">
+        <a href="javascript:;">{{data[i].name}}</a>
+    </li>
+    {{/each}}
+</script>
+<!--待乘室-->
+<script type="text/html" id="takeRoom">
+    {{each data v i}}
+    <li onclick="lookBed({{data[i].id}},{{data[i].superiorId}})">
+        <a href="javascript:;">{{data[i].name}}</a>
+    </li>
+    {{/each}}
+</script>
+<!--外公寓-->
+<script type="text/html" id="outerRoom">
+    {{each data v i}}
+    <li onclick="lookBed({{data[i].id}},{{data[i].superiorId}})">
+        <a href="javascript:;">{{data[i].name}}</a>
+    </li>
+    {{/each}}
+</script>
+<!--总体分析-->
+<script type="text/html" id="analyze">
+    <div class="tolal-list clearfix">
+        <div class="fl">总床位数：</div>
+        <div class="fl">{{totalbed}}</div>
+    </div>
+    <div class="tolal-list clearfix">
+        <div class="fl">监测床位：</div>
+        <div class="fl">{{totalactivebed}}</div>
+    </div>
+    <div class="tolal-list clearfix">
+        <div class="fl">使用人数：</div>
+        <div class="fl">{{totalusetime}}人/次</div>
+    </div>
+    <div class="tolal-list clearfix">
+        <div class="fl">预警人数：</div>
+        <div class="fl">{{warncnt}}/次</div>
+    </div>
+    <div class="tolal-list clearfix">
+        <div class="fl">人均入睡时长：</div>
+        <div class="fl">{{avgsleeptime}}分钟</div>
+    </div>
+    <div class="tolal-list clearfix">
+        <div class="fl">人均浅睡时长：</div>
+        <div class="fl">{{avgqian}}分钟</div>
+    </div>
+    <div class="tolal-list clearfix">
+        <div class="fl">人均深睡时长：</div>
+        <div class="fl">{{avgshen}}分钟</div>
+    </div>
+    <div class="tolal-list clearfix">
+        <div class="fl">平均睡眠效率：</div>
+        <div class="fl">{{avgsleepeff}}%</div>
+    </div>
+    <div class="tolal-list clearfix">
+        <div class="fl">整体睡眠质量：</div>
+        <div class="fl">
+            <div class="star">
+                <span class="{{evaluate>=1?'on':(evaluate>=0.5?'half':'')}}"></span>
+                <span class="{{evaluate>=2?'on':(evaluate>=1.5?'half':'')}}"></span>
+                <span class="{{evaluate>=3?'on':(evaluate>=2.5?'half':'')}}"></span>
+                <span class="{{evaluate>=4?'on':(evaluate>=3.5?'half':'')}}"></span>
+                <span class="{{evaluate>=5?'on':(evaluate>=4.5?'half':'')}}"></span>
+            </div>
+        </div>
+    </div>
+</script>
+<!--地图-->
+<script type="text/html" id="map">
+    {{each data v i}}
+    {{if data[i].choose===1}}
+    <div class="spot support" data-id="{{data[i].id}}" style="left:{{data[i].longitude}}%;top: {{data[i].latitude}}%">
+        <span class="spot_text">{{data[i].name}}</span>
+        <div class="big_circle active"></div>
+        <div class="hint_info">
+            <p>待乘室：{{data[i].name}}</p>
+            <p>总床位数：<span class="hint_info_countbed"></span></p>
+            <p>监测床位：<span class="hint_info_monitor"></span></p>
+        </div>
+    </div>
+    {{else}}
+    <div class="spot" style="left:{{data[i].longitude}}%;top: {{data[i].latitude}}%"><span class="spot_text">{{data[i].name}}</span>
+        <div class="big_circle"></div>
+    </div>
+    {{/if}}
+    {{/each}}
+</script>
+
+<script type="text/javascript" src="../static/js/jquery-3.1.1.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/jquery-3.1.1.min.js'"></script>
+<script type="text/javascript" src="../static/js/echarts.common.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/echarts.common.min.js'"></script>
+<script type="text/javascript" src="js/template-web.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/template-web.js'"></script>
+<script type="text/javascript" src="js/common.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    let mapImg = $(".middle-main img");
+    $(function () {
+        $(".nav-item>ul>li").hover(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+
+        $(".menu-open>li>a").click(function () {
+            $(this).find('em').toggleClass("on");
+            $(this).parents("li").siblings("li").find('a').find("em").removeClass('on');
+            $(this).siblings('ul').slideToggle();
+            $(this).parents("li").siblings("li").find('ul').slideUp();
+        });
+    });
+    // 时间
+    $(function () {
+        getTime();
+        setInterval(function () {
+            getTime();
+        }, 1000);
+
+        function getTime() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var week = date.getDay();
+            switch (week) {
+                case 1:
+                    week = '星期一';
+                    break;
+                case 2:
+                    week = '星期二';
+                    break;
+                case 3:
+                    week = '星期三';
+                    break;
+                case 4:
+                    week = '星期四';
+                    break;
+                case 5:
+                    week = '星期五';
+                    break;
+                case 6:
+                    week = '星期六';
+                    break;
+                case 7:
+                    week = '星期日';
+                    break;
+            }
+            var p = document.querySelector(".time-years");
+            var time = document.querySelector(".time-num");
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var timeQ = '';
+            if (hours > 12) {
+                hours -= 12;
+                timeQ = 'PM';
+            } else {
+                timeQ = 'AM'
+            }
+            hours = patchTime(hours);
+            minutes = patchTime(minutes);
+            time.innerHTML = "<span class='time-num-main'>" + hours + ":" + minutes + "</span><span class='time-num-state'>" + timeQ + "</span>";
+            p.innerHTML = year + '年' + month + '月' + day + '日' + "&nbsp;&nbsp;&nbsp;" + week;
+        }
+
+        function patchTime(n) {
+            if (n >= 10) {
+                return n;
+            } else {
+                return '0' + n
+            }
+        }
+    });
+    //菜单
+    $(function () {
+        sessionStorage.removeItem("superiorId");
+        $.ajax({
+            url: IP + "/dept/dataControl",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let newData = [];
+                    if (data.hasOwnProperty('1')) {
+                        newData = data[1];
+                    } else {
+                        newData.push(data);
+                    }
+                    let html = template("topList", {data: newData});
+                    $(".topList").html(html);
+                    $(".topList li").hover(function () {
+                        $(this).addClass("active").siblings().removeClass("active");
+                        if ($(this).attr("data-dept") == 1) {  //如果depttype等于1时，触发hover
+                            getList1($(this).attr("data-id"));
+                        } else if ($(this).attr("data-dept") == 2) {
+                            map(newData)
+                        }
+                    }, function () {
+
+                    });
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+
+        //待乘室&外公寓
+        function getList1(id) {
+            $.ajax({
+                url: IP + "/dept/selectLeafs",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    id: id,
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        $(".menu").show();
+                        let data = res.data;
+                        let takeRoom = data[2], outerRoom = data[3];
+                        $(".takeRoom").html(template("takeRoom", {data: takeRoom}));
+                        $(".outerRoom").html(template("outerRoom", {data: outerRoom}));
+                        // 地图
+                        map(takeRoom);
+                        $(".menu").hover(function () {
+                            $(this).show();
+                        }, function () {
+                            $(this).fadeOut(300);
+                        })
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        alert(res.data)
+                    }
+                },
+            });
+        }
+    });
+
+    function lookBed(id, superiorId) {
+        sessionStorage.setItem("siteId", id);
+        sessionStorage.setItem("superiorId", superiorId);
+        window.location.href = IP + "/bed.html";
+    };
+
+    function lookDetails(id, depttype) {
+        if (depttype > 1) {
+            sessionStorage.setItem("siteId", id);
+            window.location.href = IP + "/bed.html";
+        } else {
+            analyze(id);
+            sleep(id);
+        }
+    };
+
+    //总体分析
+    function analyze(id) {
+        $.ajax({
+            url: IP + "/home/totalAnalysis",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                id: id,
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    for (let key in data) {
+                        if (data[key] === null) {
+                            data[key] = 0;
+                        }
+                    }
+                    dataCeil(data);
+                    let avgsleepeff = (Math.floor(data.avgsleepeff) * 5) / 100;
+                    data.evaluate = avgsleepeff;
+                    let html = template("analyze", data);
+                    $(".analyze").html(html);
+                    $(".total").css("opacity", 1);
+                    $(".hint_info_countbed").text(data.totalbed);
+                    $(".hint_info_monitor").text(data.totalactivebed);
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    }
+
+    //睡眠质量分析
+    function sleep(id) {
+        $.ajax({
+            url: IP + "/home/sleepQualityAnalysis",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                id: id,
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let sleepEffAnalysis = data.sleepEffAnalysis;
+                    let sleepTimeAnalysis = data.sleepTimeAnalysis;
+                    for (let key in sleepEffAnalysis) {
+                        if (sleepEffAnalysis[key] === null) {
+                            sleepEffAnalysis[key] = 0;
+                        }
+                    }
+                    for (let key in sleepTimeAnalysis) {
+                        if (sleepTimeAnalysis[key] === null) {
+                            sleepTimeAnalysis[key] = 0;
+                        }
+                    }
+
+                    let data1 = [
+                        {value: sleepTimeAnalysis.shen, name: '深睡'},
+                        {value: sleepTimeAnalysis.sleepTime, name: '入睡'},
+                        {value: sleepTimeAnalysis.qian, name: '浅睡'},
+                        {value: sleepTimeAnalysis.other, name: '其他'}
+                    ];
+                    bight1(data1);
+
+                    $(".shen").text(sleepTimeAnalysis.shen + "%");
+                    $(".sleepTime").text(sleepTimeAnalysis.sleepTime + "%");
+                    $(".qian").text(sleepTimeAnalysis.qian + "%");
+                    $(".other").text(sleepTimeAnalysis.other + "%");
+
+                    let data2 = [
+                        {value: sleepEffAnalysis.level1SleepEff, name: '0-23%'},
+                        {value: sleepEffAnalysis.level2SleepEff, name: '24-47%'},
+                        {value: sleepEffAnalysis.level3SleepEff, name: '47-67%'},
+                        {value: sleepEffAnalysis.level4SleepEff, name: '68-83%'},
+                        {value: sleepEffAnalysis.level5SleepEff, name: '84-100%'}
+                    ];
+                    bight2(data2);
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    }
+
+    function bight1(data) {
+        var dom = document.getElementById("bight1");
+        var myChart = echarts.init(dom, 'light');
+        var app = {};
+        option = null;
+        option = {
+            color: ["#4C67EB", "#00F6FF", "#FF549D", "#9D45E0"],
+            tooltip: {
+                trigger: 'item',
+                formatter: "({c}%)"
+            },
+            series: [
+                {
+                    name: '睡眠时长分析',
+                    type: 'pie',
+                    radius: ['50%', '100%'],
+                    avoidLabelOverlap: false,
+                    hoverAnimation: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '12',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: data
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+    function bight2(data) {
+        var dom = document.getElementById("bight2");
+        var myChart = echarts.init(dom, 'light');
+        var app = {};
+        option = null;
+        option = {
+            color: ["#04E8B8", "#08F0FE", '#0976F8', '#034FFA', '#024FA5'],
+            tooltip: {
+                trigger: 'item',
+                formatter: "({d}%)"
+            },
+            series: [
+                {
+                    name: '睡眠效率分析',
+                    type: 'pie',
+                    radius: ['50%', '100%'],
+                    avoidLabelOverlap: false,
+                    hoverAnimation: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '12',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: data
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+    function dataCeil(data) {
+        data.avgqian = Math.ceil(data.avgqian);
+        data.avgshen = Math.ceil(data.avgshen);
+        data.avgsleeptime = Math.ceil(data.avgsleeptime);
+        data.avgsleepeff = Math.ceil(data.avgsleepeff);
+        // console.log(data.avgsleepeff);
+    }
+
+    //地图
+    function map() {
+        let takeRoom = arguments[0] ? arguments[0] : [];
+        $.ajax({
+            url: IP + "/dept/page",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                page: 1,
+                limit: 100,
+                deptType: 2
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.rows;
+                    for (let i = 0; i < data.length; i++) {
+                        for (let j = 0; j < takeRoom.length; j++) {
+                            if (data[i].id === takeRoom[j].id) {
+                                data[i].choose = 1
+                            }
+                        }
+                    }
+                    $(".map").html(template("map", {data: data}));
+                    $(".support").hover(function () {
+                        $(this).find(".hint_info").show();
+                        $(this).siblings().find(".hint_info").hide();
+                        analyze($(this).attr("data-id"));
+                        sleep($(this).attr("data-id"));
+                    }, function () {
+                        $(this).find(".hint_info").hide()
+                    })
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    }
+
+    window.onload = function () {
+        map();
+    };
+    $(function () {
+        $.ajax({
+            url: IP + "/user/self",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data[0];
+                    let headImg = data.headImg;
+                    if (headImg) {
+                        $(".user_info img").attr('src', IP + headImg);
+                    }
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    })
+
+    /*]]>*/
+</script>
+</body>
+</html>

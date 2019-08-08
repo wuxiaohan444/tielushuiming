@@ -1,0 +1,18 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.jiangkai.framework.admin.config.UploadFileProperties",
+      "name": "jiangkai.sleep-monitoring.upload-file",
+      "description": "UploadFileProperties."
+    }
+  ],
+  "properties": [
+    {
+      "name": "jiangkai.sleep-monitoring.upload-file.prefix",
+      "type": "java.lang.String",
+      "sourceType": "com.jiangkai.framework.admin.config.UploadFileProperties",
+      "description": "Upload File Prefix."
+    }
+  ]
+}

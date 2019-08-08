@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css">
+    <link rel="stylesheet" type="text/css" href="css/frame.css">
+    <link rel="stylesheet" type="text/css" href="css/set.css">
+    <title>设置 -- 新增数据源</title>
+</head>
+<body>
+<div th:fragment="base" style="height: 100%">
+    <div class="conter">
+        <div class="title">数据源</div>
+        <div class="data-main">
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">别称</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="nickname"
+                               placeholder="请输入别称">
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">IP</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="ip" placeholder="请输入IP">
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">端口号</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="port" placeholder="请输入端口号">
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">用户名</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="username"
+                               placeholder="请输入用户名">
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">密码</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="password"
+                               placeholder="请输入密码">
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">数据库</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="databaseName"
+                               placeholder="请输入数据库">
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">机务段</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_select dept_select">
+                        <span class="dyui_select-text" data-select="">请选择机务段</span>
+                        <span class="dyui_select-icon"><img src="images/down12.png"
+                                                            th:src="${#httpServletRequest.getContextPath()}+'/images/down12.png'"></span>
+                        <ul class="dept">
+                            <!--渲染-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">类型</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_select">
+                        <span class="dyui_select-text deptType" data-select="">请选择部门类型</span>
+                        <span class="dyui_select-icon"><img src="images/down12.png"
+                                                            th:src="${#httpServletRequest.getContextPath()}+'/images/down12.png'"></span>
+                        <ul class="dept_type">
+                            <li class="trs" data-select="">
+                                <span>请选择部门类型</span>
+                            </li>
+                            <li class="trs" data-select="2">
+                                <span>待乘室</span>
+                            </li>
+                            <li class="trs" data-select="3">
+                                <span>外公寓</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="data-list clearfix">
+                <div class="list-item-text fl">部门</div>
+                <div class="data-list-main fl">
+                    <div class="dyui_select top_select">
+                        <span class="dyui_select-text" data-select="">请选择部门</span>
+                        <span class="dyui_select-icon"><img src="images/down12.png"
+                                                            th:src="${#httpServletRequest.getContextPath()}+'/images/down12.png'"></span>
+                        <ul class="top-level">
+                            <!--渲染-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="data-btn">
+            <button type="button" class="dyui-btn dyui-btn-item" id="save">
+                <span>保存</span>
+            </button>
+            <button type="button" class="dyui-btn dyui-btn-default" id="quit">
+                <span>退出</span>
+            </button>
+        </div>
+    </div>
+    <script type="text/html" id="dept">
+        {{each data v i}}
+        <li class="trs">
+            <span data-id="{{data[i].id}}">{{data[i].name}}</span>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/html" id="toplevel">
+        {{each data v i}}
+        <li class="trs">
+            <span data-id="{{data[i].id}}">{{data[i].name}}</span>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/javascript" src="js/common.js"
+            th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+    <script type="text/javascript" src="js/template-web.js"
+            th:src="${#httpServletRequest.getContextPath()}+'/js/template-web.js'"></script>
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        $(function () {
+            // 编辑
+            if (sessionStorage.getItem("id")) {
+                let id = sessionStorage.getItem("id");
+                $.ajax({
+                    url: IP + "/datasource/" + id,
+                    type: "get",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.withCredentials = true;
+                    },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            let data = res.data;
+                            $(".top_select .dyui_select-text").attr("data-select", data.deptId);
+                            $(".top_select .dyui_select-text").text(data.deptName);
+                            getList(data.superiorDeptId);
+                            $(".deptType").attr("data-select", data.deptType);
+                            $(".dept_select .dyui_select-text").attr("data-select", data.superiorDeptId);
+                            $(".dept_select .dyui_select-text").text(data.superiorDeptName);
+                            $("input[name='ip']").val(data.ip);
+                            $("input[name='databaseName']").val(data.databaseName);
+                            $("input[name='nickname']").val(data.nickname);
+                            $("input[name='port']").val(data.port);
+                            $("input[name='username']").val(data.username);
+                            $("input[name='password']").val(data.password);
+                            switch (data.deptType) {
+                                case 2:
+                                    $(".deptType").text("待乘室");
+                                    break;
+                                case 3:
+                                    $(".deptType").text("外公寓");
+                                    break;
+                            }
+                        } else {
+                            layer, msg(res.data, {time: 500})
+                        }
+                    },
+                });
+            }
+            // 保存
+            $("#save").on("click", function () {
+                let url, method;
+                if (sessionStorage.getItem("id")) {
+                    url = "/datasource/update";
+                    method = "post"
+                } else {
+                    url = "/datasource/insert";
+                    method = "put"
+                }
+                $.ajax({
+                    url: IP + url,
+                    type: method,
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    data: {
+                        id: sessionStorage.getItem("id"),
+                        deptId: $(".top_select .dyui_select-text").attr("data-select"),
+                        ip: $("input[name='ip']").val(),
+                        databaseName: $("input[name='databaseName']").val(),
+                        nickname: $("input[name='nickname']").val(),
+                        port: $("input[name='port']").val(),
+                        username: $("input[name='username']").val(),
+                        password: $("input[name='password']").val(),
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.withCredentials = true;
+                    },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            layer.msg(res.data, {time: 500})
+                            back();
+                        } else {
+                            layer.msg(res.data, {time: 500})
+                        }
+                    }
+                    ,
+                })
+                ;
+            })
+        });
+        //选择部门
+        $(function () {
+            //机务段
+            $.ajax({
+                url: IP + "/dept/page",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    deptType: '1',
+                    limit: '500',
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let data = res.rows;
+                        let html = template("dept", {data: data})
+                        $(".dept").html(html);
+                        choose($(".dept_select li span"), $(".dept_select li"), $(".dept_select .dyui_select-text"), $(".dept_select>ul"), 1);
+                        $(".dept_select li").on("click",function () {
+                            $(".deptType").text("请选择部门类型");
+                            $(".deptType").attr("data-select", '');
+                            $(".top_select .dyui_select-text").text("请选择部门");
+                            $(".top_select .dyui_select-text").attr("data-select", '');
+                        })
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        layer.msg(res.data, {time: 500})
+                    }
+                },
+            });
+            $(".dept_type li").on("click", function () {
+                let id = $(".dept_select .dyui_select-text").attr("data-select");
+                $(".top_select .dyui_select-text").text("请选择部门");
+                $(".top_select .dyui_select-text").attr("data-select", '');
+                if (id) {
+                    getList(id);
+                }
+            });
+        });
+
+        //待乘室&外公寓
+        function getList(id) {
+            $.ajax({
+                url: IP + "/dept/selectLeafs",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    id: id,
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        $(".menu").show();
+                        let data = res.data;
+                        let takeRoom, outerRoom;
+                        for (let key in data) {
+                            if (key === '2') {
+                                takeRoom = data[key]
+                            } else if (key === '3') {
+                                outerRoom = data[key]
+                            }
+                        }
+                        if ($(".deptType").attr("data-select") == '2') {
+                            $(".top-level").html(template("toplevel", {data: takeRoom}))
+                        } else if ($(".deptType").attr("data-select") == '3') {
+                            $(".top-level").html(template("toplevel", {data: outerRoom}))
+                        }
+                        choose($(".top_select li span"), $(".top_select li"), $(".top_select .dyui_select-text"), $(".top_select>ul"), 0);
+                    }  else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        layer.msg(res.data, {time: 500})
+                    }
+                },
+            });
+        }
+        //选择
+        function choose(data1, data2, data3, data4, status) {
+            data1.click(function () {
+                if ($(this).siblings("ul").length > 0) {
+                    if ($(this).siblings("ul").css("display") == "none") {
+                        $(this).siblings("ul").slideDown(300);
+                    } else {
+                        $(this).siblings("ul").slideUp(300);
+                    }
+                } else {
+                    inText = $(this).text();
+                    data2.removeClass("active");
+                    $(this).parent().addClass("active");
+                    data3.text(inText);
+                    data4.slideUp(300);
+                }
+                data3.attr("data-select", $(this).attr("data-id"));
+                if ($(".deptType").attr("data-select") && $(".dept_select .dyui_select-text").attr("data-select") && status) {
+                    getList($(this).attr("data-id"))
+                }
+            });
+        }
+
+        // 退出
+        $(function () {
+            $("#quit").on("click", function () {
+                back();
+            })
+        });
+
+        function back() {
+            $.ajax({
+                url: IP + '/set-data.include',
+                dataType: "html",
+                success: function (data) {
+                    $('#main-content').html(data);
+                }
+            });
+        }
+
+        $(function () {
+            $(".dyui_select .dyui_select-text").on("click", function () {
+                $(this).parents(".data-list").siblings().find(".dyui_select ul").slideUp(0)
+            })
+        })
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>

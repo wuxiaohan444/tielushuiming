@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/animate.min.css'">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/dyui.css'">
+    <link rel="stylesheet" type="text/css" href="css/frame.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/frame.css'">
+    <link rel="stylesheet" type="text/css" href="css/set.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/set.css'">
+    <title>设置</title>
+</head>
+<body>
+<div th:include="common::base"></div>
+<!-- 背景图 -->
+<div class="bg_img">
+    <img src="images/bg1.png" th:src="${#httpServletRequest.getContextPath()}+'/images/bg1.png'">
+</div>
+<!-- 头部 -->
+<div class="header">
+    <div class="header-main clearfix">
+        <div class="logo fl">
+            <a href="javascript:;">广铁集团</a>
+        </div>
+        <div class="header-con">
+            <div class="header-menu">
+                <ul class="clearfix">
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="index.html">首页</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="report-per.html">个人报告</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-bg">
+                            <img src="../static/images/headbg1.png"
+                                 th:src="${#httpServletRequest.getContextPath()}+'/images/headbg1.png'">
+                            <div class="hear-bg-main">睡眠检测和无干扰叫班系统</div>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="report-team.html">团队报告</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="menu.html">设置</a>
+                        </div>
+                    </li>
+                    <li class="fl quit">
+                        <div class="hear-text">
+                            <a href="javascript:;">退出</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="user_info">
+                    <img src="" th:src="${#httpServletRequest.getContextPath()}+'/images/header1.png'" alt="">
+                    <span>张三</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 内容 -->
+<div class="wapper">
+    <div class="main">
+        <!-- 左侧 -->
+        <div class="left">
+            <div class="horn horn-top-left"></div>
+            <div class="horn horn-top-right"></div>
+            <div class="horn horn-bottom-left"></div>
+            <div class="horn horn-bottom-right"></div>
+            <div class="box">
+                <div class="conter">
+                    <div class="nav-item">
+                        <div class="nav-title">
+                            <a href="javascript:;">设置</a>
+                        </div>
+                        <ul>
+                            <li class="active">
+                                <a href="set-mine.htm">个人中心</a>
+                            </li>
+                            <li class="">
+                                <a href="set-staff.htm">人员设置</a>
+                            </li>
+                            <li class="">
+                                <a href="set-role.htm">角色设置</a>
+                            </li>
+                            <li class="">
+                                <a href="set-data.htm">数据源</a>
+                            </li>
+                            <li class="">
+                                <a href="set-organ.htm">组织设置</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-btn">
+                        <a href="index.html"><span>返回</span><img src="images/fanhui1.png" alt="" th:src="${#httpServletRequest.getContextPath()}+'/images/fanhui1.png'"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中部 -->
+        <div class="con">
+            <div class="horn horn-top-left"></div>
+            <div class="horn horn-top-right"></div>
+            <div class="horn horn-bottom-left"></div>
+            <div class="horn horn-bottom-right"></div>
+            <div class="box" id="main-content">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="menu">
+    {{each data v i}}
+    <li class="{{i===1?'active':''}}" data-url="{{data[i].url}}" style="display: {{data[i].isMenu==1?'block':'none'}}">
+        <a href="javascript:;">{{data[i].name}}</a>
+    </li>
+    {{/each}}
+</script>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/jquery-3.1.1.min.js'"></script>
+<script type="text/javascript" src="js/template-web.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/template-web.js'"></script>
+<script type="text/javascript" src="js/common.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+<script type="text/javascript" src="js/menu.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/menu.js'"></script>
+<script type="text/javascript" src="layer/layer.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/layer/layer.js'"></script>
+</body>
+</html>

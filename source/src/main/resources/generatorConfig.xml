@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 配置生成器 -->
+<generatorConfiguration>
+    <!--执行generator插件生成文件的命令： call mvn mybatis-generator:generate -e -->
+    <!-- 引入配置文件 -->
+    <properties resource="application.properties"/>
+    <!--classPathEntry:数据库的JDBC驱动,换成你自己的驱动位置 可选 -->
+    <!--<classPathEntry location="D:\generator_mybatis\mysql-connector-java-5.1.24-bin.jar" /> -->
+
+    <!--
+    context:生成一组对象的环境
+    id:必选，上下文id，用于在生成错误时提示
+    defaultModelType:指定生成对象的样式
+   特别说明 我的前面三个都不管用,不知道为啥
+        1，conditional：类似hierarchical；
+        2，flat：所有内容（主键，blob）等全部生成在一个对象中；
+        3，hierarchical：主键生成一个XXKey对象(key class)，Blob等单独生成一个对象，其他简单属性在一个对象中(record class)
+    targetRuntime:
+        1，MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample；
+        2，MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample；
+    introspectedColumnImpl：类全限定名，用于扩展MBG
+    -->
+    <!-- 一个数据库一个context -->
+    <!--defaultModelType="flat" 大数据字段，不分表 -->
+    <context id="MysqlTables" targetRuntime="MyBatis3DynamicSql" defaultModelType="flat">
+
+
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
+        一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
+        <property name="autoDelimitKeywords" value="true"/>
+        <!-- mergeable 为true时，可合并，为false，重新生成的时采用覆盖-->
+        <property name="mergeable" value="false"/>
+
+        <!--<property name="javaMergeable" value="false"/>-->
+        <!--<property name="xmlMergeable" value="false"/>-->
+
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="autoDelimitKeywords" value="true"/>
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="&quot;"/>
+        <property name="endingDelimiter" value="&quot;"/>
+
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--本地包mbg.lombok.jar下-->
+        <plugin type="org.mybatis.generator.plugins.lombok.LombokPlugin">
+            <property name="customLombok" value="@Data,@EqualsAndHashCode(callSuper = true),@Accessors(chain = true)"/>
+            <property name="lombokPackage" value="lombok.Data,lombok.EqualsAndHashCode,lombok.experimental.Accessors"/>
+        </plugin>
+
+        <!-- 注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/><!-- 是否取消注释 -->
+            <property name="suppressDate" value="false"/> <!-- 是否生成注释代时间戳-->
+        </commentGenerator>
+
+        <!-- jdbc连接 -->
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}" connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}" password="${spring.datasource.password}"/>
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>
+            <!--<property name="useJSR310Types" value="true"/>-->
+        </javaTypeResolver>
+
+        <!-- 生成实体类地址 -->
+        <javaModelGenerator targetPackage="com.jiangkai.framework.source.model" targetProject="src/main/java">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="false"/>
+            <property name="rootClass" value="com.jiangkai.framework.source.base.BasePage"/>
+        </javaModelGenerator>
+        <!-- 生成mapxml文件 -->
+        <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- 生成mapxml对应client，也就是接口dao -->
+        <!--1，ANNOTATEDMAPPER：会生成使用Mapper接口+Annotation的方式创建（SQL生成在annotation中），不会生成对应的XML；
+            2，MIXEDMAPPER：使用混合配置，会生成Mapper接口，并适当添加合适的Annotation，但是XML会生成在XML中；
+            3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；-->
+        <javaClientGenerator targetPackage="com.jiangkai.framework.source.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!--         table可以有多个,每个数据库中的表都可以写一个table，tableName表示要匹配的数据库表,也可以在tableName属性中通过使用%通配符来匹配所有数据库表,只有匹配的表才会自动生成文件-->
+        <!--schema="sleep_monitoring" -->
+        <table tableName="bed_info" domainObjectName="BedInfo" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <!--schema="sleep_monitoring" -->
+        <table tableName="bed_active" domainObjectName="BedActive" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="bed_record" domainObjectName="BedRecord" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="bed_record_detail" domainObjectName="BedRecordDetail" catalog="sleep_monitoring"
+               delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="data_source" domainObjectName="DataSource" catalog="sleep_monitoring"
+               delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="dept" domainObjectName="Dept" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="driver" domainObjectName="Driver" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="leave_bed_info" domainObjectName="LeaveBedInfo" catalog="sleep_monitoring"
+               delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="method" domainObjectName="Method" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="role" domainObjectName="Role" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="role_method" domainObjectName="RoleMethod" catalog="sleep_monitoring"
+               delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="user" domainObjectName="User" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="user_role" domainObjectName="UserRole" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="summary_dept_bed" domainObjectName="SummaryDeptBed" catalog="sleep_monitoring"
+               delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="summary_dept_person" domainObjectName="SummaryDeptPerson" catalog="sleep_monitoring"
+               delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="base_data" domainObjectName="BaseData" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="permission" domainObjectName="Permission" catalog="sleep_monitoring"
+               delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="role_permission" domainObjectName="RolePermission" catalog="sleep_monitoring"
+               delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="user_dept" domainObjectName="UserDept" catalog="sleep_monitoring" delimitIdentifiers="true">
+            <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
+            <property name="useActualColumnNames" value="false"/>
+            <!-- 默认为false，如果设置为true，在生成的SQL中，table名字不会加上catalog或schema；-->
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <!-- 数据库表主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

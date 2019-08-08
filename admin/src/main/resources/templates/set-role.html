@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css">
+    <link rel="stylesheet" type="text/css" href="css/frame.css">
+    <link rel="stylesheet" type="text/css" href="css/set.css">
+    <title>设置 -- 角色设置</title>
+</head>
+<body>
+<div th:fragment="base" style="height: 100%">
+    <div class="conter">
+        <div class="title">角色设置</div>
+        <div class="staff-header clearfix">
+            <div class="staff-item fl">
+                <div class="dyui_input">
+                    <input class="dyui_input-inner dyui_input-focus" type="text" name="name" placeholder="角色名称">
+                </div>
+            </div>
+            <button type="button" class="dyui-btn dyui-btn-item search">
+                <span>搜索</span>
+            </button>
+        </div>
+        <div class="staff-btn">
+            <button type="button" class="dyui-btn dyui-btn-item" id="add">
+                <span>新增</span>
+            </button>
+            <!--<button type="button" class="dyui-btn dyui-btn-item">-->
+                <!--<span>删除</span>-->
+            <!--</button>-->
+        </div>
+        <div class="staff-main">
+            <div class="staff-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>
+                            <label role="checkbox" class="dyui_checkbox">
+		                                                <span class="dyui_checkbox-input">
+		                                                    <input type="checkbox" class="dyui_checkbox-original"
+                                                                   name="">
+		                                                    <span class="dyui_checkbox-inner"></span>
+		                                                </span>
+                                <span class="dyui_checkbox-label">序号</span>
+                            </label>
+                        </th>
+                        <th>角色名称</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--渲染-->
+                    </tbody>
+                </table>
+            </div>
+            <div class="staff-page clearfix">
+                <div class="page clearfix fr">
+                    <div class="page-text fl">
+                        共<span class="total">28</span>条，每页<span>10</span>条
+                    </div>
+                    <div class="page-main fl">
+                        <button type="button" class="dyui-btn dyui-btn-text prev">
+                            <i class="dyui_icon_img">
+                                <img src="images/left1.png" alt=""
+                                     th:src="${#httpServletRequest.getContextPath()}+'/images/left1.png'">
+                            </i>
+                        </button>
+                        <ul class="clearfix">
+                            <li class="fl on page-number">1</li>
+                        </ul>
+                        <button type="button" class="dyui-btn dyui-btn-text next">
+                            <i class="dyui_icon_img">
+                                <img src="images/right1.png" alt=""
+                                     th:src="${#httpServletRequest.getContextPath()}+'/images/right1.png'">
+                            </i>
+                        </button>
+                    </div>
+                    <div class="page-jump fl">
+                        <span>跳至</span>
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus skipPage"
+                                   onkeyup="value=value.replace(/[^\d]/g,'')" type="text">
+                        </div>
+                        <span>页</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="tableList">
+        {{each data v i}}
+        <tr>
+            <td>
+                <label role="checkbox" class="dyui_checkbox">
+		                                                <span class="dyui_checkbox-input">
+		                                                    <input type="checkbox" class="dyui_checkbox-original"
+                                                                   name="">
+		                                                    <span class="dyui_checkbox-inner"></span>
+		                                                </span>
+                    <span class="dyui_checkbox-label">{{i+1}}</span>
+                </label>
+            </td>
+            <td>{{data[i].name}}</td>
+            {{if data[i].status===1}}
+            <td>启用</td>
+            {{else data[i].status===0}}
+            <td>未启用</td>
+            {{/if}}
+            <td>
+                <button type="button" class="dyui-btn dyui-btn-text dyui-btn-edit" onclick="edit({{data[i].id}})">
+                    <span>编辑</span>
+                </button>
+                <button type="button" class="dyui-btn dyui-btn-text dyui-btn-delete delete" data-id="{{data[i].id}}">
+                    <span>删除</span>
+                </button>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <script type="text/javascript" src="js/template-web.js"
+            th:src="${#httpServletRequest.getContextPath()}+'/js/template-web.js'"></script>
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        //表格
+        $(function () {
+            let page = 1;
+            getData(page);
+            $(".prev").on("click", function () {
+                if (page !== 1) page--;
+                $(".page-number").text(page);
+                getData(page);
+            });
+            $(".next").on("click", function () {
+                if (page < totalPage) {
+                    page++;
+                    $(".page-number").text(page)
+                    getData(page);
+                }
+            });
+            $(".skipPage").on("keydown", function (event) {
+                if (event.keyCode == 13) {
+                    page = $(this).val();
+                    $(".page-number").text(page);
+                    getData(page)
+                }
+            });
+            // 搜索
+            $(".search").on("click", function () {
+                page = 1;
+                getData(page);
+            });
+        });
+
+        // 查看列表
+        function getData(page) {
+            $.ajax({
+                url: IP + "/role/page",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    page: page,
+                    limit: 10,
+                    name: $("input[name='name']").val()
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let data = res.rows;
+                        totalPage = Math.ceil(res.total / 10);
+                        if (res.total <= 10) {
+                            $(".staff-page").hide()
+                        } else {
+                            $(".staff-page").show();
+                            $(".total").text(res.total);
+                        }
+                        $(".staff-table tbody").html(template("tableList", {data: data}));
+                        $(".delete").on("click", function () {
+                            let id = $(this).attr("data-id");
+                            layer.msg('确认删除吗', {
+                                time: 10000, //20s后自动关闭
+                                btn: ['确认', '取消'],
+                                yes: function () {
+                                    $.ajax({
+                                        url: IP + "/role/" + id,
+                                        type: "delete",
+                                        contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                                        xhrFields: {
+                                            withCredentials: true
+                                        },
+                                        beforeSend: function (xhr) {
+                                            xhr.withCredentials = true;
+                                        },
+                                        success: function (res) {
+                                            if (res.code === 0) {
+                                                layer.msg('删除成功', {time: 500})
+                                                getData(page)
+                                            } else if (res.code === 1002) {
+                                                window.location.href = IP + "/login.html"
+                                            } else {
+                                                layer.msg(res.data, {time: 500})
+                                            }
+                                        },
+                                    });
+                                }
+                            });
+                        })
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        layer.msg(res.data, {time: 500})
+                    }
+                },
+            });
+        }
+
+        //新增
+        $("#add").on("click", function () {
+            sessionStorage.removeItem("id");
+            menuSkip('set-role-add')
+        });
+        //编辑
+        function edit(id) {
+            sessionStorage.setItem("id", id);
+            menuSkip('set-role-add')
+        }
+
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+
+.menu{
+    display: none;
+    width: 180px;
+    height: calc(100% + 2px);
+    position: absolute;
+    top: -1px;
+    left: calc(100% + 5px);
+    border: 1px solid #00f6ff;
+    border-radius: 0 10px 10px 0;
+    background-color: rgb(5, 60, 72);
+}
+.menu-open a{
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+}
+.menu-open>li{
+    padding-top: 20px;
+}
+.menu-open>li:first-child{
+    padding-top: 0;
+}
+.menu-open>li>a{
+    padding-bottom: 10px;
+}
+.menu-open>li>a>em{
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    background: url(../images/up1.png) center no-repeat;
+    background-size: 100% 100%;
+    vertical-align: middle;
+}
+.menu-open>li>a>.on{
+    background: url(../images/down1.png) center no-repeat;
+    background-size: 100% 100%;
+}
+.menu-open>li>ul>li>a{
+    padding: 10px 0;
+}
+.menu-open>li>ul{
+    display: none;
+}
+
+.main .con{
+    border: none;
+}
+.team-top{
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    text-align: right;
+}
+.team-top>ul{
+    display: inline-block;
+}
+.team-top>ul>li{
+    margin-left: 10px;
+}
+.team-time{
+    width: 100px;
+    height: 40px;
+    position: relative;
+}
+.time-text{
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 0 20px 0 5px;
+    border-radius: 6px;
+    background-color: rgba(0,246,255,0.1);
+    border: 1px solid rgb(0, 246, 255);
+    cursor: pointer;
+}
+.time-icon{
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+.time-main{
+    display: none;
+    width: 240px;
+    height: auto;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    border: 1px solid rgb(0, 246, 255);
+    border-radius: 6px;
+    z-index: 100;
+    background:  #053c48;
+    background: -webkit-radial-gradient(circle, #02242c, #053c48);
+    background: -o-radial-gradient(circle, #02242c, #053c48);
+    background: -moz-radial-gradient(circle, #02242c, #053c48);
+    background: radial-gradient(circle, #02242c, #053c48);
+}
+.time-month .time-main{
+    left: 0;
+    margin: auto;
+}
+.time-quarter .time-main{
+    width: 100%;
+}
+.time-main ul{
+    width: 100%;
+    height: auto;
+    padding: 15px;
+}
+.time-main ul li{
+    width: 33.333333%;
+}
+.time-quarter .time-main ul{
+    padding: 15px 0;
+}
+.time-quarter .time-main ul li{
+    width: 100%;
+}
+.time-main ul li span{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    display: block;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+.time-main ul li span:hover,.time-main ul .on span{
+    background-color: #036e78;
+    color: #00f6ff;
+}
+.time-btn{
+    padding: 6px 15px;
+    border-top: 1px solid rgb(0, 246, 255);
+}
+.time-btn .dyui-btn{
+    padding: 6px 8px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #036e78;
+    border: none;
+}
+.time-top{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid rgb(0, 246, 255);
+    padding: 0 15px;
+}
+.time-left,.time-right{
+    display: block;
+    width: 24px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;;
+    cursor: pointer;
+}
+.time-top-info{
+    width: calc(100% - 48px);
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+.team-main{
+    width: 100%;
+    height: calc(100% - 50px);
+    position: relative;
+    border: 1px solid #00f6ff;
+    border-radius: 0 10px 10px 0;
+}
+.team-main .box{
+    padding: 10px;
+}
+.team-main .box .conter{
+    padding-right: 10px;
+}
+.team-info{
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    padding: 10px 0;
+}
+.team-info-main{
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+}
+.team-title{
+    text-align: center;
+    font-size: 20px;
+    color: #333333;
+    padding: 20px 0;
+}
+.team-info-head{
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+}
+.team-head-main{
+    width: 50%;
+    font-size: 18px;
+}
+
+.personal-item-title{
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+    font-size: 18px;
+    color: #fff;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+    border-bottom: 2px solid #1cafb4;
+}
+.personal-item-title::after{
+    content:"";
+    display:block;
+    width:160px;
+    height:0px;
+    border-width:0px 20px 42px 0px;
+    border-style:none solid solid;
+    border-color:transparent transparent #1cafb4;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+.team-table{
+    width: 100%;
+    padding: 15px 0;
+}
+.team-table table{
+    width: 100%;
+}
+.team-table table>tbody>tr>td{
+    padding: 12px 30px;
+    line-height: 1.6;
+    text-align: center;
+    font-size: 16px;
+    width: 12.5%;
+}
+.team-table table>tbody>tr:first-child{
+    border-top: 1px solid #ccc;
+}
+.team-table table>tbody>tr{
+    border-bottom: 1px solid #ccc;
+}
+.team-table table>tbody>tr>td:nth-child(odd){
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+.team-img,.team-img>img{
+    width: 100%;
+}
+
+.team-img{
+    padding: 15px 0;
+}
+.team-item{
+    width: 50%;
+}
+
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media screen and (max-width: 1400px) {
+    .team-info-main {
+        width: 90%;
+    }
+    .team-head-main {
+        font-size: 16px;
+    }
+    .team-table table>tbody>tr>td {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+.rest .dyui-btn,.search .dyui-btn{
+    background-color: rgba(0,246,255,0.3);
+    border-radius: 6px;
+    font-size: 18px;
+    color: #fff;
+    border: 1px solid rgba(0, 246, 255,0.5);
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+}

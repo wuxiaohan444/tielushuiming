@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/animate.min.css'">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/dyui.css'">
+    <link rel="stylesheet" type="text/css" href="css/frame.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/frame.css'">
+    <link rel="stylesheet" type="text/css" href="css/report-per.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/report-per.css'">
+    <link rel="stylesheet" type="text/css" href="css/style.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/style.css'">
+    <title>个人报告</title>
+</head>
+<body>
+<div th:include="common::base"></div>
+<!-- 背景图 -->
+<div class="bg_img">
+    <img src="images/bg1.png" th:src="${#httpServletRequest.getContextPath()}+'/images/bg1.png'">
+</div>
+
+<!-- 头部 -->
+<div class="header">
+    <div class="header-main clearfix">
+        <div class="logo fl">
+            <a href="javascript:;">广铁集团</a>
+        </div>
+        <div class="header-con">
+            <div class="header-menu">
+                <ul class="clearfix">
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="index.html">首页</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="report-per.html">个人报告</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-bg">
+                            <img src="../static/images/headbg1.png"
+                                 th:src="${#httpServletRequest.getContextPath()}+'/images/headbg1.png'">
+                            <div class="hear-bg-main">睡眠检测和无干扰叫班系统</div>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="report-team.html">团队报告</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="menu.html">设置</a>
+                        </div>
+                    </li>
+                    <li class="fl quit">
+                        <div class="hear-text">
+                            <a href="javascript:;">退出</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="user_info">
+                    <img src="" th:src="${#httpServletRequest.getContextPath()}+'/images/header1.png'" alt="">
+                    <span>张三</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 内容 -->
+<div class="wapper">
+    <div class="main">
+        <!-- 左侧 -->
+        <div class="left report">
+            <div class="horn horn-top-left"></div>
+            <div class="horn horn-top-right"></div>
+            <div class="horn horn-bottom-left"></div>
+            <div class="horn horn-bottom-right"></div>
+
+            <div class="report-top clearfix">
+                <div class="report-title fl">人员列表</div>
+                <div class="report-search fr">
+                    <div class="report-search-main clearfix">
+                        <button type="button" class="dyui-btn dyui-btn-text" id="search">
+                            <i class="dyui_icon_img">
+                                <img src="images/search1.png" alt=""
+                                     th:src="${#httpServletRequest.getContextPath()}+'/images/search1.png'">
+                            </i>
+                        </button>
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus search" type="text" name=""
+                                   placeholder="搜索工号/姓名">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="conter driver_box">
+                    <div class="report-table">
+                        <div class="report-table-header">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>工号</th>
+                                    <th>姓名</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="report-table-body">
+                            <table>
+                                <tbody>
+                                <!--渲染-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 中部 -->
+        <div class="con">
+            <div class="report-main clearfix">
+                <div class="report-tab fl">
+                    <ul class="clearfix">
+                        <li class="fl active" data-index="1">
+                            <div class="tab-main trs">
+                                <a href="javascript:;">监测记录</a>
+                            </div>
+                        </li>
+                        <li class="fl" data-index="0">
+                            <div class="tab-main trs">
+                                <a href="javascript:;">个人报告</a>
+                            </div>
+                        </li>
+                        <li class="fl" data-index="2">
+                            <div class="tab-main trs">
+                                <a href="javascript:;">个人综合报告</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="report-main-time fr clearfix">
+                    <div class="report-time-item fl">
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus" id="startTime" type="text" name=""
+                                   placeholder="开始时间">
+                        </div>
+                    </div>
+                    <div class="report-time-item fl">
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus" id="endTime" type="text" name=""
+                                   placeholder="结束时间">
+                        </div>
+                    </div>
+                    <div class="report-time-btn fl">
+                        <button type="button" class="dyui-btn searchTime">搜索</button>
+                    </div>
+                </div>
+            </div>
+            <div class="report-list">
+                <div class="horn horn-top-left"></div>
+                <div class="horn horn-top-right"></div>
+                <div class="horn horn-bottom-left"></div>
+                <div class="horn horn-bottom-right"></div>
+                <div class="box">
+                    <div class="conter">
+                        <!-- 监测记录 -->
+                        <div class="tab-item">
+                            <div class="monitor">
+                                <div class="monitor-title">监测记录</div>
+                                <div class="monitor-main">
+                                    <div class="monitor-head clearfix">
+                                        <span class="fl">工号  </span>
+                                        <span class="fl">姓名 </span>
+                                        <span class="fl">机务段 </span>
+                                    </div>
+                                </div>
+                                <div class="monitor-table">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>监测日期</th>
+                                            <th>间休地址</th>
+                                            <th>报告</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <!--渲染-->
+                                        </tbody>
+                                    </table>
+                                    <div class="staff-page clearfix">
+                                        <div class="page clearfix fr">
+                                            <div class="page-text fl">
+                                                共<span class="total">28</span>条，每页<span>10</span>条
+                                            </div>
+                                            <div class="page-main fl">
+                                                <button type="button" class="dyui-btn dyui-btn-text prev">
+                                                    <i class="dyui_icon_img">
+                                                        <img src="images/left1.png" alt=""
+                                                             th:src="${#httpServletRequest.getContextPath()}+'/images/left1.png'">
+                                                    </i>
+                                                </button>
+                                                <ul class="clearfix">
+                                                    <li class="fl on page-number">1</li>
+                                                    <!--<li class="fl">2</li>-->
+                                                </ul>
+                                                <button type="button" class="dyui-btn dyui-btn-text next">
+                                                    <i class="dyui_icon_img">
+                                                        <img src="images/right1.png" alt=""
+                                                             th:src="${#httpServletRequest.getContextPath()}+'/images/right1.png'">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                            <div class="page-jump fl">
+                                                <span>跳至</span>
+                                                <div class="dyui_input">
+                                                    <input class="dyui_input-inner dyui_input-focus skipPage"
+                                                           onkeyup="value=value.replace(/[^\d]/g,'')" type="text">
+                                                </div>
+                                                <span>页</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 个人报告 -->
+                        <div class="tab-item tab-item-left">
+                            <div class="personal">
+                                <img src="" alt="">
+                            </div>
+                        </div>
+                        <!-- 个人综合报告 -->
+                        <div class="tab-item tab-item-left">
+                            <div class="personal">
+                                <div class="personal-main">
+                                    <div class="personal-title">机车乘务睡眠监测和无干扰叫班系统报告（综合）</div>
+                                    <div class="multiple-header clearfix">
+                                        <div class="multiple-left fl">
+                                            <ul class="clearfix">
+                                                <li class="fl">姓名：<span class="driverName"></span></li>
+                                                <li class="fr">睡眠效率：<span class="sleepeff"></span>%</li>
+                                            </ul>
+                                        </div>
+                                        <div class="multiple-right fr">
+                                            <div class="tolal-list clearfix">
+                                                <div class="fl">综合睡眠评价：</div>
+                                                <div class="fl">
+                                                    <div class="star">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="multiple-info">
+                                        <ul class="clearfix">
+                                            <li class="fl">时间范围：<span class="timeSpan"></span></li>
+                                            <li class="fr">睡眠次数：<span class="useTime"></span>次</li>
+                                        </ul>
+                                    </div>
+                                    <div class="personal-item">
+                                        <div class="personal-item-title">基本信息</div>
+                                        <div class="multiple-item-table">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>项目内容</th>
+                                                    <th>睡眠时长</th>
+                                                    <th>入睡时长</th>
+                                                    <th>浅睡时长</th>
+                                                    <th>深睡时长</th>
+                                                    <th>预警次数</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class="baseInfo">
+                                                <!--渲染-->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="personal-item-title">趋势汇总</div>
+                                        <div class="personal-item-main">
+                                            <div class="personal-item-img">
+                                                <div id="broken1" style="height: 300px"></div>
+                                            </div>
+                                            <div class="multiple-immg-info max-height">
+                                                <!--渲染-->
+                                            </div>
+                                            <div class="personal-item-img">
+                                                <div id="broken2" style="height: 300px"></div>
+                                            </div>
+                                            <div class="personal-item-img">
+                                                <div id="broken3" style="height: 300px"></div>
+                                            </div>
+                                            <div class="personal-item-img clearfix">
+                                                <div class="personal-item-echa fl">
+                                                    <div id="echarts1" style="height: 200px"></div>
+                                                    <div class="echarts-text">
+                                                        平均睡眠效率<span class="sleepeff"></span>%
+                                                    </div>
+                                                </div>
+                                                <div class="personal-item-echa fl">
+                                                    <div id="echarts2" style="height: 200px"></div>
+                                                    <div class="echarts-text">
+                                                        平均睡眠时长<span class="totalsleept"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="personal-item-echa fl">
+                                                    <div id="echarts3" style="height: 200px"></div>
+                                                    <div class="echarts-text">
+                                                        平均入睡时长<span class="sleepTime"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="personal-item-title">睡眠综合分析</div>
+                                        <div class="personal-item-main analyze">
+                                            该司机暂无记录
+                                            <!--渲染-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--人员列表-->
+<script type="text/html" id="driverList">
+    {{each data v i}}
+    <tr class="trs" onclick="choosestaff(this)" data-no="{{data[i].driverNo}}" data-name="{{data[i].driverName}}">
+        <td>{{data[i].index}}</td>
+        <td>{{data[i].driverNo}}</td>
+        <td>{{data[i].driverName}}</td>
+    </tr>
+    {{/each}}
+</script>
+<!--头部表格-->
+<script type="text/html" id="baseInfo">
+    <tr>
+        <td>检测范围</td>
+        <td>{{totalsleept}}</td>
+        <td>{{sleepTime}}</td>
+        <td>{{qian}}</td>
+        <td>{{shen}}</td>
+        <td>{{warn}}</td>
+    </tr>
+</script>
+<!--星星-->
+<script type="text/html" id="star">
+    <span class="{{evaluate>=1?'on':(evaluate>=0.5?'half':'')}}"></span>
+    <span class="{{evaluate>=2?'on':(evaluate>=1.5?'half':'')}}"></span>
+    <span class="{{evaluate>=3?'on':(evaluate>=2.5?'half':'')}}"></span>
+    <span class="{{evaluate>=4?'on':(evaluate>=3.5?'half':'')}}"></span>
+    <span class="{{evaluate>=5?'on':(evaluate>=4.5?'half':'')}}"></span>
+</script>
+
+<script type="text/html" id="maxHeight">
+    <ul class="clearfix">
+        <li class="fl">
+            最低心率
+            <span>{{heartDetail.min}}</span>
+        </li>
+        <li class="fl">
+            最高心率
+            <span>{{heartDetail.max}}</span>
+        </li>
+        <li class="fl">
+            平均心率
+            <span>{{heartDetail.avg}}</span>
+        </li>
+        <li class="fl">
+            最低呼吸
+            <span>{{breathDetail.min}}</span>
+        </li>
+        <li class="fl">
+            最高呼吸
+            <span>{{breathDetail.max}}</span>
+        </li>
+        <li class="fl">
+            平均呼吸
+            <span>{{breathDetail.avg}}</span>
+        </li>
+    </ul>
+</script>
+<!--监测记录-->
+<script type="text/html" id="monitorRecords">
+    {{each data v i}}
+    <tr data-reportguid="{{data[i].reportguid}}">
+        <td>0{{i+1}}</td>
+        <td>{{data[i].monitorTime}}</td>
+        <td>{{data[i].restAddr}}</td>
+        <td>
+            <button type="button" class="dyui-btn dyui-btn-text dyui-btn-monitor" onclick="lookReport(this)"
+                    data-reportguid="{{data[i].reportguid}}">查看报告
+            </button>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+<script type="text/html" id="monitorMain">
+    <div class="monitor-head clearfix">
+        <span class="fl">工号  {{no}}</span>
+        <span class="fl">姓名 {{name}}</span>
+        <span class="fl">机务段 {{deptid}}</span>
+    </div>
+</script>
+
+<script type="text/html" id="analyze">
+    {{each data v i}}
+    <div class="personal-item-text">
+        <div class="personal-world">
+            <div class="world-list clearfix">
+                <span class="world-left fl">睡眠状态</span>
+                <span class="world-text fl">{{data[i].sleepStatus}}</span>
+            </div>
+            <div class="world-list clearfix">
+                <span class="world-left fl">监测纬度</span>
+                <span class="world-text fl">{{data[i].monitorDim}}</span>
+            </div>
+            <div class="world-list clearfix">
+                <span class="world-left fl">总体建议</span>
+                <span class="world-text fl">{{data[i].sleepAdvise}}</span>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/jquery-3.1.1.min.js'"></script>
+<script type="text/javascript" src="js/Ecalendar.jquery.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/Ecalendar.jquery.min.js'"></script>
+<script type="text/javascript" src="js/common.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+<script type="text/javascript" src="js/template-web.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/template-web.js'"></script>
+<script type="text/javascript" src="../static/js/echarts.common.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/echarts.common.min.js'"></script>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    let sub = 1, no, startTime, endTime, totalPage;
+    //日期
+    $(function () {
+        startTime = getCurrentMonthFirst();
+        endTime = getCurrentMonthLast();
+        $("#startTime").val(startTime);
+        $("#endTime").val(endTime)
+
+        //获取当月第一天
+        function getCurrentMonthFirst() {
+            var date = new Date();
+            var month = parseInt(date.getMonth() == 0 ? '12' : date.getMonth());
+            var day = date.getDate();
+            if (month < 10) {
+                month = '0' + month
+            }
+            if (day < 10) {
+                day = '0' + day
+            }
+            return date.getFullYear() + '-' + month + '-' + day;
+        }
+
+        //获取当月最后一天
+        function getCurrentMonthLast() {
+            var date = new Date();
+            var month = parseInt(date.getMonth() + 1);
+            var day = date.getDate();
+            if (month < 10) {
+                month = '0' + month
+            }
+            if (day < 10) {
+                day = '0' + day
+            }
+            return date.getFullYear() + '-' + month + '-' + day;
+        }
+    });
+    //点击tab
+    $(function () {
+        chooseTime($("#startTime"));
+        chooseTime($("#endTime"));
+        $(".report-tab>ul>li").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+            var index = $(this).index();
+            $(".report-list .tab-item").eq(index).show().siblings().hide();
+            sub = +$(this).attr('data-index');
+            switch (sub) {
+                case 0:
+                    personage();
+                    $(".report-main-time").hide();
+                    break;
+                case 1:
+                    monitor();
+                    $(".report-main-time").show();
+                    break;
+                case 2:
+                    composite();
+                    $(".report-main-time").show();
+                    break
+            }
+        });
+    });
+    // 人员列表
+    $(function () {
+        let page = 1, control = true, noOrName = '';
+        getDriverList();
+        $(document).ready(function () {
+            var nScrollHight = 0; //滚动距离总长(注意不是滚动条的长度)
+            var nScrollTop = 0;   //滚动到的当前位置
+            var nDivHight = $(".driver_box").height();
+            $(".driver_box").scroll(function () {
+                if (control) {
+                    nScrollHight = $(this)[0].scrollHeight;
+                    nScrollTop = $(this)[0].scrollTop;
+                    if (nScrollTop + nDivHight >= nScrollHight) {
+                        page++;
+                        getDriverList();
+                    }
+                }
+            });
+        });
+
+        function getDriverList() {
+            $.ajax({
+                url: IP + "/driver/page",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    page: page,
+                    limit: '30',
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let data = res.data;
+                        data.map((num, i) => {
+                            num.index = (i + 1) + (30 * (page - 1))
+                        });
+                        if (data.length < 30) {
+                            control = false
+                        }
+                        no = data[0].driverNo;
+                        let html = template("driverList", {data: data});
+                        $(".report-table-body tbody").append(html);
+                        monitor();
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    }
+                },
+            });
+        }
+
+        //搜索人
+        $("#search").on("click", function () {
+            noOrName = $(".search").val();
+            $.ajax({
+                url: IP + "/driver/page",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    noOrName: noOrName,
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let data = res.data;
+                        data.map((num, i) => {
+                            num.index = i + 1
+                        });
+                        let html = template("driverList", {data: data});
+                        $(".report-table-body tbody").html(html);
+                        no = data[0].driverNo;
+                        switch (sub) {
+                            case 0:
+                                personage();
+                                break;
+                            case 1:
+                                monitor();
+                                break;
+                            case 2:
+                                composite();
+                                break
+                        }
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    }
+                },
+            });
+        })
+    });
+
+    //选中人员
+    function choosestaff(e) {
+        no = e.getAttribute("data-no");
+        sessionStorage.setItem("name", e.getAttribute("data-name"));
+        switch (sub) {
+            case 0:
+                personage();
+                break;
+            case 1:
+                monitor();
+                break;
+            case 2:
+                composite();
+                break
+        }
+    }
+
+    //查看报告
+    function lookReport(e) {
+        $(".report-tab>ul>li").eq(1).addClass("active").siblings().removeClass("active");
+        var index = 1;
+        $(".report-list .tab-item").eq(index).show().siblings().hide();
+        sub = 0;
+        let reportguid = e.getAttribute("data-reportguid");
+        $(".personal img").attr("src", IP + "/uploadFiles/png/" + reportguid + ".png");
+        $(".report-main-time").hide();
+    }
+
+
+    //个人报告
+    function personage() {
+        $.ajax({
+            url: IP + "/driver/monitorRecords",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+                startTime: startTime,
+                endTime: endTime + " 23:59:59"
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.rows;
+                    if (data.length > 0) {
+                        let reportguid = data[0].reportguid;
+                        $(".personal img").attr("src", IP + "/uploadFiles/png/" + reportguid + ".png");
+                    } else {
+                        $(".personal img").attr("src", IP + '/images/no.png');
+                    }
+
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    };
+
+    //监测记录
+    function monitor() {
+        startTime = formatMytime($("#startTime"));
+        endTime = formatMytime($("#endTime"));
+        let page = 1;
+        getdata(page);
+        $(".prev").on("click", function () {
+            if (page !== 1) page--;
+            $(".page-number").text(page);
+            getdata(page);
+        });
+        $(".next").on("click", function () {
+            if (page < totalPage) {
+                page++;
+                $(".page-number").text(page)
+                getdata(page);
+            }
+        });
+        //获取监测用户信息
+        $.ajax({
+            url: IP + "/driver/driverInfo",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let html = template("monitorMain", data);
+                    $(".monitor-main").html(html);
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    }
+
+
+    $(".skipPage").on("keydown", function (event) {
+        if (event.keyCode == 13) {
+            let page = $(this).val();
+            $(".page-number").text(page);
+            getdata(page)
+        }
+    });
+
+    // 个人综合报告
+    function composite() {
+        startTime = formatMytime($("#startTime"));
+        endTime = formatMytime($("#endTime"));
+        getBaseInfo();
+        heartRate();
+        sleepAnalysis();
+        sleepEffTrend();
+        sleepTimeTrend();
+        ringSleepKpi();
+    }
+
+    //时间搜索
+    $(".searchTime").on("click", function () {
+        startTime = formatMytime($("#startTime"));
+        endTime = formatMytime($("#endTime"));
+        switch (sub) {
+            case 0:
+                personage();
+                break;
+            case 1:
+                monitor();
+                break;
+            case 2:
+                composite();
+                break
+        }
+    });
+
+
+    //转化格式
+    function formatMytime(data) {
+        console.log(data.val());
+        if (data.val() !== '') {
+            let start = data.val().split("-");
+            start[1] = ten(start[1]);
+            start[2] = ten(start[2])
+            return start.join("-");
+        } else {
+            return ''
+        }
+
+    }
+
+    //补全0
+    function ten(num) {
+        if (num >= 10) {
+            return num
+        } else {
+            return '0' + num
+        }
+    }
+
+    // 监测记录数据
+    function getdata(page) {
+        $.ajax({
+            url: IP + "/driver/monitorRecords",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+                startTime: startTime,
+                endTime: endTime + " 23:59:59",
+                page: page,
+                limit: '10'
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.rows;
+                    totalPage = Math.ceil(res.total / 10);
+                    if (res.total <= 10) {
+                        $(".staff-page").hide()
+                    } else {
+                        $(".staff-page").show();
+                        $(".total").text(res.total);
+                    }
+                    let html = template("monitorRecords", {data: data});
+                    $(".monitor-table tbody").html(html);
+                    // 双击
+                    $(".monitor-table tbody tr").on("dblclick", function () {
+                        var index = 1;
+                        $(".report-main-time").hide();
+                        $(".report-tab>ul>li").eq(index).addClass("active").siblings().removeClass("active");
+                        $(".report-list .tab-item").eq(index).show().siblings().hide();
+                        sub = 0;
+                        let reportguid = $(this).attr("data-reportguid");
+                        $(".personal img").attr("src", IP + "/uploadFiles/png/" + reportguid + ".png");
+                    })
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    }
+
+    //头部基本信息
+    function getBaseInfo() {
+        $.ajax({
+            url: IP + "/driver/baseInfo",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+                startTime: startTime,
+                endTime: endTime + " 23:59:59"
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    for (let key in data) {
+                        if (data[key] === null) {
+                            data[key] = 0;
+                        }
+                    }
+                    $(".driverName").text(data.driverName);
+                    $(".useTime").text(data.useTime);
+                    $(".timeSpan").text(data.timeSpan);
+                    let avgsleepeff = (Math.floor(data.sleepeff) * 5) / 100;
+                    data.evaluate = avgsleepeff;
+                    let starHtml = template("star", data);
+                    $(".star").html(starHtml);
+                    let html = template("baseInfo", data);
+                    $(".baseInfo").html(html)
+                    if (data.driverName === 0) {
+                        $(".driverName").text(sessionStorage.getItem("name"));
+                    }
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data.data)
+                }
+            },
+        });
+    }
+
+    //心率/呼吸率
+    function heartRate() {
+        $.ajax({
+            url: IP + "/driver/htBrTrend",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+                startTime: startTime,
+                endTime: endTime + " 23:59:59"
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let heart = data.trend[0];
+                    let breat = data.trend[1];
+                    let dataX = [];
+                    let dataY1 = [], dataY2 = [];
+                    for (let i = 0; i < heart.length; i++) {
+                        for (let key in heart[i]) {
+                            dataX.push(key);
+                            dataY1.push(heart[i][key])
+                        }
+                    }
+                    for (let i = 0; i < breat.length; i++) {
+                        for (let key in breat[i]) {
+                            dataY2.push(breat[i][key])
+                        }
+                    }
+                    let end = '';
+                    let show = false;
+                    if (dataX.length <= 7) {
+                        end = 100;
+                        show = false
+                    } else if (dataX.length > 7 && dataX.length <= 14) {
+                        end = 80;
+                        show = true
+                    } else if (dataX.length > 14) {
+                        end = 50;
+                        show = true
+                    }
+                    broken1(dataX, dataY1, dataY2, end, show);
+
+                    let html = template("maxHeight", data);
+                    $(".max-height").html(html)
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                }
+            },
+        });
+    }
+
+    //睡眠效率
+    function sleepEffTrend() {
+        $.ajax({
+            url: IP + "/driver/sleepEffTrend",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+                startTime: startTime,
+                endTime: endTime + " 23:59:59"
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let dataX = [];
+                    let dataY = [];
+                    for (let i = 0; i < data.length; i++) {
+                        for (let key in data[i]) {
+                            dataX.push(key);
+                            dataY.push(data[i][key])
+                        }
+                    }
+                    let show = false;
+                    if (dataX.length <= 7) {
+                        end = 100;
+                        show = false
+                    } else if (dataX.length > 7 && dataX.length <= 14) {
+                        end = 80;
+                        show = true
+                    } else if (dataX.length > 14) {
+                        end = 50;
+                        show = true
+                    }
+                    broken2(dataX, dataY, end, show);
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                }
+            },
+        });
+    }
+
+    //睡眠时长
+    function sleepTimeTrend() {
+        $.ajax({
+            url: IP + "/driver/sleepTimeTrend",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+                startTime: startTime,
+                endTime: endTime + " 23:59:59"
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let dataX = [];
+                    let dataY = [];
+                    for (let i = 0; i < data.length; i++) {
+                        for (let key in data[i]) {
+                            dataX.push(key);
+                            dataY.push(data[i][key])
+                        }
+                    }
+                    let end = ''
+                    let show = false;
+                    if (dataX.length <= 7) {
+                        end = 100;
+                        show = false
+                    } else if (dataX.length > 7 && dataX.length <= 14) {
+                        end = 80;
+                        show = true
+                    } else if (dataX.length > 14) {
+                        end = 50;
+                        show = true
+                    }
+                    broken3(dataX, dataY, end, show);
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    }
+
+    function ringSleepKpi() {
+        $.ajax({
+            url: IP + "/driver/ringSleepKpi",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+                startTime: startTime,
+                endTime: endTime + " 23:59:59"
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let sleepeffLevel = data.sleepeffLevel == null ? '0' : data.sleepeffLevel;
+                    let totalsleeptLevel = data.totalsleeptLevel == null ? '0' : data.totalsleeptLevel;
+                    let sleepTimeLevel = data.sleepTimeLevel == null ? '0' : data.sleepTimeLevel;
+                    let color1 = [], color2 = [], color3 = [];
+                    loopColor(sleepeffLevel, color1, '#747ce7', '#d6d6d6');
+                    loopColor(totalsleeptLevel, color2, '#d881db', '#d6d6d6');
+                    loopColor(sleepTimeLevel, color3, '#43c6af', '#d6d6d6');
+                    echarts1(color1);
+                    echarts2(color2);
+                    echarts3(color3);
+
+                    $(".sleepeff").text(data.sleepeff);
+                    $(".totalsleept").text(data.totalsleept);
+                    $(".sleepTime").text(data.sleepTime);
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    }
+
+    // 睡眠综合分析
+    function sleepAnalysis() {
+        $.ajax({
+            url: IP + "/driver/sleepAnalysis",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            data: {
+                no: no,
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let html = template("analyze", {data: data});
+                    $(".analyze").html(html);
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                }
+            },
+        });
+    }
+
+    function broken1(dataX, dataY1, dataY2, end, show) {
+        var dom = document.getElementById("broken1");
+        var myChart = echarts.init(dom, 'light');
+        var app = {};
+        option = null;
+        option = {
+            title: {
+                text: '心率/呼吸率',
+                verticalAlign: "middle",
+                x: "right",
+                textStyle: {
+                    color: '#999999',
+                    fontSize: 12
+                }
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                bottom: 0,
+                left: 'center',
+                data: ['心率（正常值60-100）', '呼吸率（正常值：15-20）'],
+                itemWidth: 50,
+                itemHeight: 2
+            },
+            grid: {
+                top: '50',
+                left: '0',
+                right: '50',
+                bottom: '50',
+                containLabel: true
+            },
+            xAxis: {
+                name: '时间',
+                type: 'category',
+                boundaryGap: false,
+                data: dataX,
+                axisTick: {
+                    interval: 19
+                },
+                splitLine: {
+                    show: false
+                },
+            },
+            dataZoom: [
+                {
+                    type: 'slider',
+                    show: show,
+                    start: 0,
+                    end: end,
+                    handleSize: 8
+                },
+                {
+                    type: 'inside',
+                    start: 0,
+                    end: end
+                }
+            ],
+            yAxis: {
+                name: '次/分',
+                type: 'value',
+                min: 10,
+                max: 110,
+                scale: true,
+                interval: 20,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: 'solid',
+                        color: '#cdcece',
+                    },
+                }
+            },
+            series: [{
+                name: '心率（正常值60-100）',
+                symbol: 'none',
+                type: 'line',
+                stack: '',
+                data: dataY1,
+                itemStyle: {
+                    normal: {
+                        color: '#0393DD',
+                        lineStyle: {
+                            color: '#0393DD'
+                        }
+                    }
+                },
+            }, {
+                name: '呼吸率（正常值：15-20）',
+                symbol: 'none',
+                type: 'line',
+                stack: '',
+                itemStyle: {
+                    normal: {
+                        color: '#37E4D2',
+                        lineStyle: {
+                            color: '#37E4D2'
+                        }
+                    }
+                },
+                data: dataY2
+            }]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+    function broken2(dataX, dataY, end, show) {
+        var dom = document.getElementById("broken2");
+        var myChart = echarts.init(dom, 'light');
+        var app = {};
+        option = null;
+        option = {
+            title: {
+                text: '睡眠效率',
+                verticalAlign: "middle",
+                x: "right",
+                textStyle: {
+                    color: '#999999',
+                    fontSize: 14
+                }
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: {
+                top: '50',
+                left: '0',
+                right: '50',
+                bottom: '0',
+                containLabel: true
+            },
+            dataZoom: [
+                {
+                    type: 'slider',
+                    show: show,
+                    start: 0,
+                    end: end,
+                    handleSize: 8
+                },
+                {
+                    type: 'inside',
+                    start: 0,
+                    end: end
+                }
+            ],
+            xAxis: {
+                name: '时间',
+                type: 'category',
+                boundaryGap: false,
+                data: dataX,
+                axisTick: {
+                    interval: 19
+                },
+                splitLine: {
+                    show: false
+                },
+            },
+            yAxis: {
+                type: 'value',
+                min: 10,
+                max: 90,
+                scale: true,
+                interval: 20,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: 'solid',
+                        color: '#cdcece',
+                    },
+                },
+                axisLabel: {
+                    formatter: '{value}%'
+                }
+            },
+            series: [{
+                data: dataY,
+                type: 'line',
+                smooth: true,
+                symbol: 'none',
+                itemStyle: {
+                    normal: {
+                        color: '#EC804D',
+                        lineStyle: {
+                            color: '#EC804D'
+                        }
+                    }
+                },
+            }]
+        };
+        ;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+    function broken3(dataX, dataY, end, show) {
+        var dom = document.getElementById("broken3");
+        var myChart = echarts.init(dom, 'light');
+        var app = {};
+        option = null;
+        option = {
+            title: {
+                text: '睡眠时长',
+                verticalAlign: "middle",
+                x: "right",
+                textStyle: {
+                    color: '#999999',
+                    fontSize: 14
+                }
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            grid: {
+                top: '50',
+                left: '0',
+                right: '50',
+                bottom: '0',
+                containLabel: true
+            },
+            dataZoom: [
+                {
+                    type: 'slider',
+                    show: show,
+                    start: 0,
+                    end: end,
+                    handleSize: 8
+                },
+                {
+                    type: 'inside',
+                    start: 0,
+                    end: end
+                }
+            ],
+            xAxis: {
+                name: '时间',
+                type: 'category',
+                boundaryGap: false,
+                data: dataX,
+                axisTick: {
+                    interval: 19
+                },
+                splitLine: {
+                    show: false
+                },
+            },
+            yAxis: {
+                name: '分钟',
+                type: 'value',
+                min: 0,
+                max: 60,
+                interval: 15,
+                // date:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60],
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: 'solid',
+                        color: '#cdcece',
+                    },
+                }
+            },
+            series: [{
+                data: dataY,
+                type: 'line',
+                smooth: true,
+                symbol: 'none',
+                color: '#3ABF66'
+            }]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+    function echarts1(colors) {
+        var dom = document.getElementById("echarts1");
+        var myChart = echarts.init(dom, 'light');
+        var app = {};
+        option = null;
+        app.title = '环形图';
+        option = {
+            color: colors,
+            series: [
+                {
+                    name: '',
+                    type: 'pie',
+                    radius: ['70%', '90%'],
+                    avoidLabelOverlap: false,
+                    hoverAnimation: false,
+                    clockWise: true,
+                    startAngle: 90,
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 5, //设置border的宽度有多大
+                            borderColor: '#fff',
+                            label: {
+                                show: false,
+                                position: "center"
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        },
+                    },
+                    data: [
+                        {value: 10, name: '1'},
+                        {value: 10, name: '2'},
+                        {value: 10, name: '3'},
+                        {value: 10, name: '4'},
+                        {value: 10, name: '5'},
+                        {value: 10, name: '6'},
+                        {value: 10, name: '7'},
+                        {value: 10, name: '8'},
+                        {value: 10, name: '9'},
+                        {value: 10, name: '10'},
+                    ]
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+    function echarts2(colors) {
+        var dom = document.getElementById("echarts2");
+        var myChart = echarts.init(dom, 'light');
+        var app = {};
+        option = null;
+        app.title = '环形图';
+        option = {
+            color: colors,
+            series: [
+                {
+                    name: '',
+                    type: 'pie',
+                    radius: ['70%', '90%'],
+                    avoidLabelOverlap: false,
+                    hoverAnimation: false,
+                    clockWise: true,
+                    startAngle: 90,
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 5, //设置border的宽度有多大
+                            borderColor: '#fff',
+                            label: {
+                                show: false,
+                                position: "center"
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        },
+                    },
+                    data: [
+                        {value: 10, name: '1'},
+                        {value: 10, name: '2'},
+                        {value: 10, name: '3'},
+                        {value: 10, name: '4'},
+                        {value: 10, name: '5'},
+                        {value: 10, name: '6'},
+                        {value: 10, name: '7'},
+                        {value: 10, name: '8'},
+                        {value: 10, name: '9'},
+                        {value: 10, name: '10'},
+                    ]
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+    function echarts3(colors) {
+        var dom = document.getElementById("echarts3");
+        var myChart = echarts.init(dom, 'light');
+        var app = {};
+        option = null;
+        app.title = '环形图';
+        option = {
+            color: colors,
+            series: [
+                {
+                    name: '',
+                    type: 'pie',
+                    radius: ['70%', '90%'],
+                    avoidLabelOverlap: false,
+                    hoverAnimation: false,
+                    clockWise: true,
+                    startAngle: 90,
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 5, //设置border的宽度有多大
+                            borderColor: '#fff',
+                            label: {
+                                show: false,
+                                position: "center"
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        },
+                    },
+                    data: [
+                        {value: 10, name: '1'},
+                        {value: 10, name: '2'},
+                        {value: 10, name: '3'},
+                        {value: 10, name: '4'},
+                        {value: 10, name: '5'},
+                        {value: 10, name: '6'},
+                        {value: 10, name: '7'},
+                        {value: 10, name: '8'},
+                        {value: 10, name: '9'},
+                        {value: 10, name: '10'},
+                    ]
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+    // 环形颜色
+    function loopColor(a, color, hold, others) {
+        for (let i = 0; i < 10; i++) {
+            if (a > i) {
+                color.push(hold)
+            } else {
+                color.push(others)
+            }
+        }
+    }
+
+    $(function () {
+        $.ajax({
+            url: IP + "/user/self",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data[0];
+                    let headImg = data.headImg;
+                    if (headImg) {
+                        $(".user_info img").attr('src', IP + headImg);
+                    }
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+    })
+
+    /*]]>*/
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css">
+    <link rel="stylesheet" type="text/css" href="css/frame.css">
+    <link rel="stylesheet" type="text/css" href="css/set.css">
+    <title>设置 -- 菜单设置</title>
+</head>
+<body>
+<div th:fragment="base" style="height: 100%">
+    <link rel="stylesheet" type="text/css" href="css/set-menu.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/set-menu.css'">
+    <div class="conter">
+        <div class="title">菜单设置</div>
+        <div class="staff-header clearfix">
+            <div class="staff-item fl">
+                <div class="dyui_input">
+                    <button type="button" class="dyui-btn dyui-btn-item" id="add">
+                        <span>新增</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="staff-main">
+            <div class="staff-table">
+                <div class="warp">
+                    <ul id="container">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/common.js"
+            th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        $(function () {
+            // 新增
+            $("#add").on("click", function () {
+                $.ajax({
+                    url: IP + '/set-menu-add.include',
+                    dataType: "html",
+                    success: function (data) {
+                        sessionStorage.removeItem("parentid");
+                        sessionStorage.removeItem("parentName");
+                        sessionStorage.removeItem("id");
+                        $('#main-content').html(data);
+                    }
+                });
+            })
+        });
+
+        //处理展开和收起
+        function toggle(eve) {
+            var par = eve.parentNode.nextElementSibling;
+            if (par.style.display == 'none') {
+                par.style.display = 'block';
+                eve.className = 'switch-open';
+            } else {
+                par.style.display = 'none';
+                eve.className = 'switch-close';
+            }
+        }
+
+        //处理全部勾选和全部不选
+        function checkChange(eve) {
+            var oul = eve.parentNode.nextElementSibling;
+            if (eve.checked) {
+                for (var i = 0; i < oul.querySelectorAll('input').length; i++) {
+                    oul.querySelectorAll('input')[i].checked = true;
+                }
+            } else {
+                for (var i = 0; i < oul.querySelectorAll('input').length; i++) {
+                    oul.querySelectorAll('input')[i].checked = false;
+                }
+            }
+        }
+
+        // 查看列表
+        $(function () {
+            getMenuData();
+
+            function getMenuData() {
+                $.ajax({
+                    url: IP + "/menu/allNode",
+                    type: "get",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.withCredentials = true;
+                    },
+                    success: function (res) {
+                        if (res.code === 0) {
+                            let data = res.data;
+                            generate(data, document.getElementById('container'));
+                            //新增
+                            $(".add").on("click", function () {
+                                let parentid = $(this).siblings("input").attr("data-id");
+                                let parentName = $(this).siblings("input").attr("data-name");
+                                $.ajax({
+                                    url: IP + '/set-menu-add.include',
+                                    dataType: "html",
+                                    success: function (data) {
+                                        $('#main-content').html(data);
+                                        sessionStorage.setItem("parentid", parentid);
+                                        sessionStorage.setItem("parentName", parentName);
+                                    }
+                                });
+                            });
+                            //编辑
+                            $(".edit").on("click", function () {
+                                let id = $(this).siblings("input").attr("data-id");
+                                $.ajax({
+                                    url: IP + '/set-menu-add.include',
+                                    dataType: "html",
+                                    success: function (data) {
+                                        $('#main-content').html(data);
+                                        sessionStorage.setItem("id", id);
+                                    }
+                                });
+                            });
+                            //删除
+                            $(".delete").on("click", function () {
+                                let id = $(this).siblings("input").attr("data-id");
+                                layer.msg('确认删除吗', {
+                                    time: 10000, //20s后自动关闭
+                                    btn: ['确认', '取消'],
+                                    yes: function () {
+                                        $.ajax({
+                                            url: IP + "/menu/" + id,
+                                            type: "delete",
+                                            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                                            xhrFields: {
+                                                withCredentials: true
+                                            },
+                                            beforeSend: function (xhr) {
+                                                xhr.withCredentials = true;
+                                            },
+                                            success: function (res) {
+                                                if (res.code === 0) {
+                                                    $("#container").html('');
+                                                    layer.msg('删除成功', {time: 500})
+                                                    getMenuData()
+                                                } else if (res.code === 1002) {
+                                                    window.location.href = IP + "/login.html"
+                                                } else {
+                                                    layer.msg(res.data, {time: 500})
+                                                }
+                                            },
+                                        });
+                                    }
+                                });
+                            })
+                        } else if (res.code === 1002) {
+                            window.location.href = IP + "/login.html"
+                        } else {
+                            layer.msg(res.data, {time: 500})
+                        }
+                    },
+                });
+            }
+        });
+
+
+        function generate(data, par) {
+            for (let i = 0; i < data.length; i++) {
+                let ele = document.createElement('li');
+                if (!data[i].leafNodes) {
+                    ele.innerHTML = ' <input type="checkbox"  data-id=' + data[i].id + '  data-name=' + data[i].name + '>&nbsp;' + data[i].name + '<span class="add">&nbsp;新增&nbsp;</span> <span class="edit">&nbsp;编辑&nbsp;</span> <span class="delete">&nbsp;删除&nbsp;</span>';
+                } else {
+                    ele.innerHTML = '<div style="padding: 0"><span class="switch-close" onclick="toggle(this)"></span><input type="checkbox" onclick="checkChange(this)" data-id=' + data[i].id + '  data-name=' + data[i].name + '>&nbsp;' + data[i].name + '<span class="add">&nbsp;新增&nbsp;</span> <span class="edit">&nbsp;编辑&nbsp;</span> <span class="delete">&nbsp;删除&nbsp;</span></div>';
+                    let nextpar = document.createElement('ul');
+                    nextpar.style.display = "none";
+                    ele.appendChild(nextpar);
+                    generate(data[i].leafNodes, nextpar);
+                }
+                par.appendChild(ele);
+            }
+        }
+
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>

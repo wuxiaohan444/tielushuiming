@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.jiangkai.framework</groupId>
+    <artifactId>sleep-monitoring</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>sleep-monitoring</name>
+    <description>睡眠监测和无干扰叫班管理系统</description>
+
+    <modules>
+        <module>source</module>
+        <module>extdata</module>
+        <module>admin</module>
+    </modules>
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <!--ORM框架 Mybatis-->
+        <mybatis.springboot.version>2.0.1</mybatis.springboot.version>
+        <!--SQL模板 Dynamic SQL-->
+        <org.mybatis.dynamic-sql.version>1.1.2</org.mybatis.dynamic-sql.version>
+        <!--分页工具 PageHelper-->
+        <pagehelper.springboot.version>1.2.12</pagehelper.springboot.version>
+        <!--自己开发的工具包-->
+        <com.jiangkai.framework.utils.version>1.3.5</com.jiangkai.framework.utils.version>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.dynamic-sql</groupId>
+                <artifactId>mybatis-dynamic-sql</artifactId>
+                <version>${org.mybatis.dynamic-sql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jiangkai.framework</groupId>
+                <artifactId>utils</artifactId>
+                <version>${com.jiangkai.framework.utils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jiangkai.framework</groupId>
+                <artifactId>source</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jiangkai.framework</groupId>
+                <artifactId>extdata</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+
+    </build>
+    <!--局域网的依赖包-->
+    <repositories>
+        <repository>
+            <id>Nexus 3</id>
+            <name>Nexus 3</name>
+            <url>http://192.168.2.100:8081/repository/maven-public/</url>
+            <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>

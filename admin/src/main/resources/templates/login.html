@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/animate.min.css'">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/dyui.css'">
+    <link rel="stylesheet" type="text/css" href="css/frame.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/frame.css'">
+    <link rel="stylesheet" type="text/css" href="css/login.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/login.css'">
+    <title>登录</title>
+</head>
+<body onkeydown="keyLogin()">
+<div th:include="common::base"></div>
+<div class="dyui_wap">
+    <div class="dyui_conter">
+        <div class="dyui_login-img">
+            <img src="images/bg1.png" alt="" th:src="${#httpServletRequest.getContextPath()}+'/images/bg1.png'">
+            <div class="header animated fadeInDown">
+                <div class="header-main">
+                    睡眠检测和无干扰叫班系统
+                </div>
+            </div>
+            <div class="login">
+                <div class="login-bg animated fadeInLeft">
+                    <img src="images/login1.png" alt=""
+                         th:src="${#httpServletRequest.getContextPath()}+'/images/login1.png'">
+                </div>
+                <div class="login-main animated fadeInRight">
+                    <div class="horn horn-top-left"></div>
+                    <div class="horn horn-top-right"></div>
+                    <div class="horn horn-bottom-left"></div>
+                    <div class="horn horn-bottom-right"></div>
+                    <div class="login-form">
+                        <div class="list">
+                            <div class="login-text">登录</div>
+                        </div>
+                        <div class="list">
+                            <div class="dyui_input dyui_input-prefix">
+                                <input class="dyui_input-inner dyui_input-left" type="text" name="username"
+                                       placeholder="请输入账号">
+                                <span class="dyui_input-icon dyui_input-left-icon">
+                                            <img src="images/peop1.png"
+                                                 th:src="${#httpServletRequest.getContextPath()}+'/images/peop1.png'">
+                                        </span>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="dyui_input dyui_input-prefix">
+                                <input class="dyui_input-inner dyui_input-left" type="password" name="password"
+                                       placeholder="请输入密码">
+                                <span class="dyui_input-icon dyui_input-left-icon">
+                                            <img src="images/word1.png"
+                                                 th:src="${#httpServletRequest.getContextPath()}+'/images/word1.png'">
+                                        </span>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <label role="checkbox" class="dyui_checkbox">
+                                        <span class="dyui_checkbox-input">
+                                            <input type="checkbox" class="dyui_checkbox-original" name="remember-me">
+                                            <span class="dyui_checkbox-inner"></span>
+                                        </span>
+                                <span class="dyui_checkbox-label">记住密码</span>
+                            </label>
+                        </div>
+                        <div class="list">
+                            <button type="button" class="dyui-btn dyui-btn-block dyui-hover-primary" id="login">
+                                <span>登录</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/jquery-3.1.1.min.js'"></script>
+<script type="text/javascript" src="js/common.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $(function () {
+        window.setTimeout(function () {
+            $(".header").show().addClass("animated fadeInDown")
+        }, 100);
+        window.setTimeout(function () {
+            $(".login-bg").show().addClass("animated fadeInLeft")
+        }, 200);
+        window.setTimeout(function () {
+            $(".login-main").show().addClass("animated fadeInRight")
+        }, 200);
+    });
+
+    $(function () {
+        $("#login").on("click", function () {
+            login();
+        });
+    });
+
+    function keyLogin() {
+        if (event.keyCode == 13) {
+            login()
+        }
+    }
+
+    //登录
+    function login() {
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+        $.ajax({
+            url: IP + "/login",
+            type: "POST",
+            data: {
+                username: username,
+                password: password,
+                'remember-me': ($("input[name='remember-me']").val() === 'on')
+            },
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    window.location.href = IP + "/index.html"
+                } else {
+                    alert(res.data)
+                }
+            }
+        });
+    }
+
+    /*]]>*/
+</script>
+</body>
+</html>

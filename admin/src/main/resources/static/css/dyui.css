@@ -1,0 +1,467 @@
+@charset "utf-8";
+/* 清除默认样式 */
+* {
+    box-sizing: border-box;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-size: 12px;
+    font-family: "微软雅黑";
+    color: #333;
+    overflow-x: hidden;
+    background: #fff; 
+}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fieldset, lengend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+ol, ul, li {
+    list-style: none;
+}
+address, caption, cite, code, dfn, em, th, var, i {
+    font-weight: normal;
+    font-style: normal;
+}
+a {
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+img {
+    display: inline-block;
+    border: 0;
+    vertical-align: middle;
+}
+select, input, textarea {
+    border: 0;
+    font-family: "微软雅黑";
+    outline: none;
+    resize: none;
+}
+input::-webkit-input-placeholder {
+    color: #999;
+}
+input::-moz-placeholder {
+    color: #999;
+}
+input:-moz-placeholder {
+    color: #999;
+}
+textarea::-webkit-input-placeholder {
+    color: #999;
+}
+textarea::-moz-placeholder {
+    color: #999;
+}
+textarea:-moz-placeholder {
+    color: #999;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 100%;
+}
+div, dl, dt, dd, ol, ul, li {
+    zoom: 1;
+}
+caption, th {
+    text-align: left;
+}
+q:before, q:after {
+    content: '';
+}
+abbr, acronym {
+    border: 0;
+}
+input[type="button"], input[type="submit"] {
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
+}
+input, textarea {
+    box-sizing: border-box;
+}
+input[type="text"] {
+    -webkit-appearance: none;
+}
+textarea {
+    -webkit-appearance: none;
+}
+/*合并表格边框，设置边框距为零*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* .............END.......... */
+
+/*浮动元素*/
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+    font-size: 0;
+}
+.clearfix {
+    *zoom: 1;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+
+/* 页面布局 */
+.dyui_conter{
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+/* .............END.......... */
+
+/* 按钮样式 */
+.dyui-btn{
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    border-color: #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    -webkit-transition-duration: .3s;
+    -moz-transition-duration: .3s;
+    -o-transition-duration: .3s;
+    transition-duration: .3s;
+    font-weight: 500;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    padding: 12px 20px;
+    font-size: 14px;
+}
+.dyui-btn-radius{
+    border-radius: 4px;
+}
+.dyui-btn-round{
+    border-radius: 50px;
+}
+.dyui-btn:active {
+    outline: none;
+}
+.dyui-btn-text {
+    border-color: transparent;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.dyui-btn>i,.dyui-btn>span{
+    display: inline-block;
+    vertical-align: middle;
+}
+.dyui_icon_img>img{
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%
+}
+.dyui_icon_img{
+    height: 16px;
+}
+.dyui_icon-left{
+    margin-right: 5px;
+}
+.dyui_icon-right{
+    margin-left: 5px;
+}
+
+/*btn顏色*/
+.dyui-success{
+    color: #fff;
+    background-color: #67c23a;
+    border-color: #67c23a;
+}
+.dyui-hover-success:focus, .dyui-hover-success:hover {
+    background: #85ce61;
+    border-color: #85ce61;
+    color: #fff;
+}
+.dyui-info {
+    color: #fff;
+    background-color: #909399;
+    border-color: #909399;
+}
+.dyui-hover-info:focus, .dyui-hover-info:hover {
+    background: #a6a9ad;
+    border-color: #a6a9ad;
+    color: #fff;
+}
+.dyui-warning {
+    color: #fff;
+    background-color: #e6a23c;
+    border-color: #e6a23c;
+}
+.dyui-hover-warning:focus, .dyui-hover-warning:hover {
+    background: #ebb563;
+    border-color: #ebb563;
+    color: #fff;
+}
+
+.dyui-danger {
+    color: #fff;
+    background-color: #f56c6c;
+    border-color: #f56c6c;
+}
+.dyui-hover-danger:focus, .dyui-hover-danger:hover {
+    background: #f78989;
+    border-color: #f78989;
+    color: #fff;
+}
+
+.dyui-btn-block{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    padding: 0;
+}
+/* ...END... */
+/*输入框样式*/
+.dyui_input-inner,.dyui_textarea-inner {
+    -webkit-box-sizing: border-box;
+    background-image: none;
+}
+.dyui_input{
+    position: relative;
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+}
+.dyui_input-inner{
+    -webkit-appearance: none;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 1;
+    outline: 0;
+    padding: 0 15px;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
+}
+.dyui_input-prefix>.dyui_input-left{
+    padding-left: 30px;
+}
+.dyui_input-prefix>.dyui_input-right{
+    padding-right: 30px;
+}
+.dyui_input-icon{
+    height: 100%;
+    width: 25px;
+    line-height: 40px;
+    text-align: center;
+    transition: all .3s;
+    color: #c0c4cc;
+    padding: 0 5px;
+    position: absolute;
+}
+.dyui_input-left-icon{
+    left: 5px;
+    top: 0;
+}
+.dyui_input-right-icon{
+    right: 5px;
+    top: 0;
+}
+.dyui_input-icon>img{
+    max-width: 100%;
+}
+.dyui_input-group{
+    line-height: normal;
+    display: inline-table;
+    width: 100%;
+    border-collapse: separate;
+}
+.dyui_input-group-prepend,.dyui_input-group-append{
+    background-color: #f5f7fa;
+    color: #909399;
+    vertical-align: middle;
+    display: table-cell;
+    position: relative;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    padding: 0 20px;
+    width: 1px;
+    white-space: nowrap;
+}
+.dyui_input-group-prepend {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.dyui_input-group>.dyui_input-inner{
+    vertical-align: middle;
+    display: table-cell;
+}
+.dyui_input-group-prepend+.dyui_input-inner, .dyui_input-group-append {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.dyui_input-group-append{
+    border-left: 0;
+}
+.dyui_input-group_append>.dyui_input-inner{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dyui_input-group-append>.dyui-btn{
+    border-color: transparent;
+    background-color: transparent;
+    color: inherit;
+    border-top: 0;
+    border-bottom: 0;
+    display: inline-block;
+    margin: -20px;
+}
+.dyui_col-left{
+    width: 65%;
+    height: auto;
+}
+.dyui_col-right{
+    width: calc(35% - 20px);
+    height: auto;
+}
+.dyui_input-code{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 38px;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+}
+/*...END...*/
+/*checkbox 复选框*/
+.dyui_checkbox {
+    color: #606266;
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+    user-select: none;
+}
+.dyui_checkbox-input {
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    line-height: 1;
+    /*position: relative;*/
+    vertical-align: middle;
+}
+.dyui_checkbox-inner {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #dcdfe6;
+    border-radius: 2px;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    z-index: 1;
+    transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+}
+.dyui_checkbox-original {
+    opacity: 0;
+    outline: none;
+    position: absolute;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    cursor: pointer;
+}
+.dyui_checkbox-label {
+    display: inline-block;
+    padding-left: 10px;
+    line-height: 19px;
+    font-size: 14px;
+}
+.dyui_checkbox-original[type="checkbox"] + .dyui_checkbox-inner:after{
+    box-sizing: content-box;
+    content: "";
+    border: 1px solid #fff;
+    border-left: 0;
+    border-top: 0;
+    height: 7px;
+    left: 4px;
+    position: absolute;
+    top: 1px;
+    width: 3px;
+    transition: transform .15s cubic-bezier(.71,-.46,.88,.6) .05s;
+    transform-origin: center;
+    transform: rotate(45deg) scaleY(0);
+}
+.dyui_checkbox-original[type="checkbox"]:checked + .dyui_checkbox-inner{
+    background-color: #409eff;
+    border-color: #409eff;
+}
+.dyui_checkbox-original[type="checkbox"]:checked + .dyui_checkbox-inner:after{
+    transform: rotate(45deg) scaleY(1);
+}
+/*...END...*/
+
+/*全局改变色调*/
+.dyui-default{
+    border: 1px solid #088d00;
+    color: #088d00;
+}
+.dyui-hover-default:hover,.dyui-hover-default:focus{
+    border: 1px solid #088d00;
+    color: #088d00;
+}
+.dyui-primary{
+    color: #fff;
+    background-color: #409eff;
+    border-color: #409eff;
+}
+.dyui-hover-primary:focus,.dyui-hover-primary:hover {
+    background: #66b1ff;
+    border-color: #66b1ff;
+    color: #fff;
+}
+.dyui-hover-text:hover,.dyui-hover-text:focus{
+    color: #088d00;
+}
+/*輸入框顏色*/
+.dyui_input-focus:focus{
+    outline: none;
+    border-color: #088d00;
+}
+/*...END...*/

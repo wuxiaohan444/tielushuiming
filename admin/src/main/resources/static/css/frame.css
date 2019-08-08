@@ -1,0 +1,414 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.trs {
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+/*边角*/
+.horn {
+    width: 30px;
+    height: 30px;
+    border: 3px solid #00f6ff;
+    position: absolute;
+    z-index: 1;
+}
+
+.horn-top-left {
+    border-bottom: 0;
+    border-right: 0;
+    border-radius: 10px 0 0 0;
+    top: -3px;
+    left: -3px;
+}
+
+.horn-top-right {
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 0 10px 0 0;
+    top: -3px;
+    right: -3px;
+}
+
+.horn-bottom-left {
+    border-top: 0;
+    border-right: 0;
+    border-radius: 0 0 0 10px;
+    bottom: -3px;
+    left: -3px;
+}
+
+.horn-bottom-right {
+    border-top: 0;
+    border-left: 0;
+    border-radius: 0 0 10px 0;
+    bottom: -3px;
+    right: -3px;
+}
+
+/*背景图*/
+.bg_img, .bg_img > img {
+    width: 100%;
+    height: 100%;
+}
+
+/*头部*/
+.header {
+    width: 100%;
+    min-width: 1200px;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0 30px;
+    color: #fff;
+    text-align: center;
+    line-height: 80px;
+}
+
+.header-main {
+    width: 100%;
+    height: 100%;
+}
+
+.logo, .pages {
+    height: 100%;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    width: 13%;
+    text-align: center;
+}
+
+.logo > a {
+    display: block;
+    height: 100%;
+    line-height: 80px;
+    padding: 0 40px;
+    color: rgba(0, 246, 255, 1);
+    font-size: 24px;
+    font-family: SourceHanSansCN-Medium;
+}
+
+.pages > ul, .pages > ul > li, .pages > ul > li > a {
+    display: block;
+    height: 100%;
+}
+
+.pages > ul > li > a {
+    line-height: 80px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.pages > ul > li {
+    padding-left: 30px;
+}
+
+.pages > ul > li:first-child {
+    padding: 0;
+}
+
+.header-con {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 10;
+}
+
+.header-solid {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    z-index: -10;
+    margin: auto;
+    background: rgba(1, 70, 86, 1);
+    background: -webkit-linear-gradient(left, rgba(1, 70, 86, 0), rgba(1, 70, 86, 1), rgba(1, 70, 86, 0));
+    background: -o-linear-gradient(right, rgba(1, 70, 86, 0), rgba(1, 70, 86, 1), rgba(1, 70, 86, 0));
+    background: -moz-linear-gradient(right, rgba(1, 70, 86, 0), rgba(1, 70, 86, 1), rgba(1, 70, 86, 0));
+    background: linear-gradient(to right, rgba(1, 70, 86, 0), rgba(1, 70, 86, 1), rgba(1, 70, 86, 0));
+}
+
+.header-menu {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.header-menu > ul {
+    display: inline-block;
+}
+
+.header-menu > ul > .active .hear-text {
+    background: rgba(0, 246, 255, 0.7);
+    background: -webkit-linear-gradient(top, rgba(0, 246, 255, 0), rgba(0, 246, 255, 0.7));
+    background: -o-linear-gradient(bottom, rgba(0, 246, 255, 0), rgba(0, 246, 255, 0.7));
+    background: -moz-linear-gradient(bottom, rgba(0, 246, 255, 0), rgba(0, 246, 255, 0.7));
+    background: linear-gradient(to bottom, rgba(0, 246, 255, 0), rgba(0, 246, 255, 0.7));
+}
+
+.header-menu > ul > .active .hear-text:after {
+    content: "";
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #00f6ff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 15px rgba(0, 201, 211, 0.2);
+}
+
+.hear-bg {
+    height: 81px;
+    position: relative;
+    padding: 0 25px;
+}
+
+.hear-bg > img {
+    max-height: 100%;
+}
+
+.hear-bg-main {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 26px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0px 4px 10px rgba(3, 26, 44, 0.48);
+    letter-spacing: 4px;
+}
+
+.hear-text {
+    height: 100%;
+    line-height: 80px;
+    position: relative;
+}
+
+.hear-text a {
+    padding: 0 30px;
+    color: #71ccde;
+    font-size: 20px;
+}
+
+.header-menu > ul > li {
+    padding-left: 20px;
+}
+
+.header-menu > ul > li:first-child {
+    padding: 0;
+}
+
+.header-menu .user_info {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-right: 2%;
+    box-sizing: border-box;
+}
+
+.header-menu .user_info > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.header-menu .user_info > span {
+    padding-left: 10px;
+}
+
+/*...END...*/
+
+/*内容*/
+.wapper {
+    width: 100%;
+    height: 100%;
+    min-width: 1200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 105px 30px 25px 30px;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/*左*/
+.left {
+    width: 13%;
+    height: 100%;
+    border: 1px solid #00f6ff;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.con {
+    width: calc(87% - 25px);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: calc(13% + 25px);
+    border: 1px solid #00f6ff;
+    border-radius: 10px;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.conter {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.conter::-webkit-scrollbar { /*滚动条整体样式*/
+    width: 12px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+    background: rgba(0, 246, 255, 0.09);
+}
+
+.conter::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+    border-radius: 10px;;
+    background: rgba(0, 246, 255, 0.8);
+    background: -webkit-linear-gradient(left, #01adb6, #035f68);
+    background: -o-linear-gradient(right, #01adb6, #035f68);
+    background: -moz-linear-gradient(right, #01adb6, #035f68);
+    background: linear-gradient(to right, #01adb6, #035f68);
+}
+
+.conter::-webkit-scrollbar-track { /*滚动条里面轨道*/
+    border-radius: 2px;
+    background: rgba(0, 246, 255, 0.09);
+}
+
+.pack {
+    width: calc(100% + 17px);
+    position: relative;
+}
+
+.nav-item {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 18px;
+}
+
+.nav-item a {
+    width: 100%;
+    display: block;
+    color: #ffffff;
+}
+
+.nav-title a {
+    color: #00f6ff;
+}
+
+.nav-title {
+    padding-bottom: 20px;
+}
+
+.nav-item > ul > li > a {
+    padding: 20px 0;
+}
+
+.nav-item > ul > .active {
+    background: rgba(0, 246, 255, 0.7);
+    background: -webkit-linear-gradient(left, rgba(0, 246, 255, 0.8), rgba(0, 246, 255, 0.2), rgba(0, 246, 255, 0.8));
+    background: -o-linear-gradient(right, rgba(0, 246, 255, 0.8), rgba(0, 246, 255, 0.2), rgba(0, 246, 255, 0.8));
+    background: -moz-linear-gradient(right, rgba(0, 246, 255, 0.8), rgba(0, 246, 255, 0.2), rgba(0, 246, 255, 0.8));
+    background: linear-gradient(to right, rgba(0, 246, 255, 0.8), rgba(0, 246, 255, 0), rgba(0, 246, 255, 0.8));
+}
+
+.nav-btn {
+    width: 100%;
+    height: auto;
+    padding-top: 60px;
+    text-align: center;
+}
+
+.nav-btn > a {
+    display: block;
+    color: #fff;
+    font-size: 18px;
+}
+
+.nav-btn > a > span {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+
+.star {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.star > span {
+    display: inline-block;
+    width: 20px;
+    height: 18px;
+    background: url(../images/star3.png) center no-repeat;
+    background-size: 100%;
+}
+
+.star > .on {
+    background: url(../images/star1.png) center no-repeat;
+    background-size: 100%;
+}
+
+.star > .half {
+    background: url(../images/star2.png) center no-repeat;
+    background-size: 100%;
+}
+
+/* 大屏幕（大桌面显示器，大于等于 1200px） */
+@media screen and (max-width: 1400px) {
+
+}
+
+.ECalendarNoneSelect {
+    z-index: 10 !important;
+}

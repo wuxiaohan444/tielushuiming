@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公共</title>
+</head>
+<body>
+<div th:fragment="base">
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        var IP = /*[[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]]*/'';
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>

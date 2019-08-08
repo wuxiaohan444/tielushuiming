@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css">
+    <link rel="stylesheet" type="text/css" href="css/frame.css">
+    <link rel="stylesheet" type="text/css" href="css/set.css">
+    <title>设置 -- 个人中心</title>
+</head>
+<body>
+<div th:fragment="base" style="height: 100%">
+    <div class="conter">
+        <input type="hidden" name="id">
+        <div class="title">个人中心</div>
+        <div class="set-header clearfix">
+            <div class="set-header-img fl">
+                <img src="images/header1.png" alt="">
+            </div>
+            <div class="set-header-info fl">
+                <p>用户名：<span class="username">用户名1</span></p>
+            </div>
+            <div class="set-replace fl">
+                <div class="replace-main">
+                    <div class="dyui_upload">
+                        <button type="button" class="dyui-btn dyui-btn-upload">
+                            <span>更换头像</span>
+                        </button>
+                        <input class="dyui_upload-inner" type="file">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mine-main">
+            <div class="title">个人资料</div>
+            <div class="mine-list trs clearfix">
+                <div class="min-list-item fl clearfix">
+                    <div class="list-item-text fl">工号</div>
+                    <div class="list-item-main fl">
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus" type="text" name="no"
+                                   placeholder="请输入内容">
+                        </div>
+                    </div>
+                </div>
+                <div class="min-list-item fl clearfix">
+                    <div class="list-item-text fl">用户名</div>
+                    <div class="list-item-main fl">
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus" type="text" name="name"
+                                   placeholder="请输入用户名">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mine-list trs clearfix">
+                <div class="min-list-item fl clearfix">
+                    <div class="list-item-text fl">密码</div>
+                    <div class="list-item-main fl">
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus" type="password" name="password"
+                                   placeholder="请输入密码">
+                        </div>
+                    </div>
+                </div>
+                <div class="min-list-item fl clearfix">
+                    <div class="list-item-text fl">身份证</div>
+                    <div class="list-item-main fl">
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus" type="text" name="idCard"
+                                   placeholder="请输入身份证">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mine-list trs clearfix">
+                <div class="min-list-item fl clearfix">
+                    <div class="list-item-text fl">手机号</div>
+                    <div class="list-item-main fl">
+                        <div class="dyui_input">
+                            <input class="dyui_input-inner dyui_input-focus" type="text" name="phone"
+                                   placeholder="请输入手机号">
+                        </div>
+                    </div>
+                </div>
+                <div class="min-list-item fl clearfix">
+                    <div class="list-item-text fl">性别</div>
+                    <div class="list-item-main fl">
+                        <div class="dyui_select">
+                            <span class="dyui_select-text" data-select="">请选择性别</span>
+                            <span class="dyui_select-icon">
+                                                	<img src="images/down12.png">
+                                                </span>
+                            <ul>
+                                <li class="trs" data-select="">
+                                    <span>请选择性别</span>
+                                </li>
+                                <li class="trs active" data-select="1">
+                                    <span>男</span>
+                                </li>
+                                <li class="trs" data-select="0">
+                                    <span>女</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mine-list trs clearfix">
+                <div class="list-item-text fl">地址</div>
+                <div class="list-item-main fl">
+                    <div class="dyui_input">
+                        <input class="dyui_input-inner dyui_input-focus" type="text" name="addr"
+                               placeholder="请填写详细地址">
+                    </div>
+                </div>
+            </div>
+            <div class="mine-list trs clearfix">
+                <div class="list-item-text fl">备注</div>
+                <div class="list-item-main fl">
+                    <div class="dyui_input">
+                                        <textarea class="dyui_input-inner dyui_input-focus dyui_input-text" type="text"
+                                                  name="mark" placeholder="请填写备注"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mine-btn">
+            <button type="button" class="dyui-btn dyui-btn-item" id="save">
+                <span>保存</span>
+            </button>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/common.js"
+            th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        $(function () {
+            //查看个人信息
+            $.ajax({
+                url: IP + "/user/self",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let data = res.data[0];
+                        $(".username").text(data.name);
+                        $("input[name='id']").val(data.id);
+                        $("input[name='no']").val(data.no);
+                        $("input[name='name']").val(data.name);
+                        $("input[name='password']").val(data.password);
+                        $("input[name='idCard']").val(data.idCard);
+                        $("input[name='phone']").val(data.phone);
+                        $("input[name='addr']").val(data.addr);
+                        $("textarea[name='mark']").val(data.mark);
+                        headImg = data.headImg;
+                        if (headImg) {
+                            $(".set-header-img img").attr('src', IP + headImg);
+                        }
+                        switch (data.sex) {
+                            case 0:
+                                $(".dyui_select-text").text('女');
+                                $(".dyui_select-text").attr('data-select', 0)
+                                break;
+                            case 1:
+                                $(".dyui_select-text").text('男');
+                                $(".dyui_select-text").attr('data-select', 1)
+                                break;
+                        }
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        layer.msg(res.data, {time: 500})
+                    }
+                },
+            });
+        });
+        // 保存
+        $(function () {
+            $("#save").on("click", function () {
+                let data = {
+                    id: $("input[name='id']").val(),
+                    no: $("input[name='no']").val(),
+                    name: $("input[name='name']").val(),
+                    password: $("input[name='password']").val(),
+                    idCard: $("input[name='idCard']").val(),
+                    phone: $("input[name='phone']").val(),
+                    addr: $("input[name='addr']").val(),
+                    mark: $("textarea[name='mark']").val(),
+                    headImg: headImg
+                };
+                switch ($(".dyui_select-text").attr('data-select')) {
+                    case '0':
+                        data.sex = 0;
+                        break;
+                    case '1':
+                        data.sex = 1;
+                        break;
+                }
+                $.ajax({
+                    url: IP + "/user/updateSelf",
+                    type: "POST",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    data: data,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    beforeSend: function (xhr) {
+                        xhr.withCredentials = true;
+                    },
+                    success: function (res) {
+                        layer.msg(res.data,{time:500})
+                    },
+                });
+            })
+        });
+        //上传照片
+        $(function () {
+            $("input[type=file]").on("change", function (e) {
+                let file = e.target.files[0];
+                var formData = new FormData();
+                formData.append('file', file);
+                $.ajax({
+                    data: formData,
+                    type: "POST",
+                    url: IP + "/user/uploadPortrait",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if(res.code===0){
+                            headImg = res.data;
+                            $(".set-header-img img").attr('src', IP + headImg)
+                        } else if (res.code === 1002) {
+                            window.location.href = IP + "/login.html"
+                        } else {
+                            layer.msg(res.data, {time: 500})
+                        }
+
+                    },
+                    error: function () {
+                       layer.msg("系统异常",{time:500})
+                    }
+                })
+            })
+        })
+
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>

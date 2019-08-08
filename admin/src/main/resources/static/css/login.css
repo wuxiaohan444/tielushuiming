@@ -1,0 +1,174 @@
+.dyui_wap,.dyui_login-img{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.dyui_conter{
+    min-width: 1200px;
+    max-width: 100%;
+    height: 100%;
+    padding: 0;
+}
+.dyui_login-img>img{
+    width: 100%;
+}
+.header{
+    display: none;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.header-main{
+    height: 90px;
+    font-size: 26px;
+    color: #fff;
+    line-height: 90px;
+    background: url(../images/headbg1.png) center no-repeat;
+    background-size: auto 100%;
+    text-align: center;
+    text-shadow: 0px 4px 10px rgba(3, 26, 44, 0.48);
+    letter-spacing: 4px;
+}
+.login{
+    width: 100%;
+    height: calc(100% - 90px);
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+}
+.login-bg{
+    display: none;
+    width: 55%;
+    position: absolute;
+    top: 10%;
+    left: 12%;
+}
+.login-main{
+    display: none;
+    width: 500px;
+    height: auto;
+    padding: 60px 90px;
+    border: 1px solid #00f6ff;
+    border-radius: 10px;
+    position: absolute;
+    top: 20%;
+    right: 12%;
+    background-color: rgba(0, 203, 210,0.1);
+}
+
+
+.login-form{
+    width: 100%;
+    height: auto;
+}
+.list{
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+}
+.login-text{
+    text-align: center;
+    font-size: 28px;
+    color: #fff;
+}
+.dyui_input-inner,.dyui_input-code{
+    height: 48px;
+    border: 1px solid #00f6ff;
+    border-radius: 4px;
+    background-color: rgb(5, 60, 72);
+    color: rgb(216, 216, 216);
+    font-size: 18px;
+}
+input::-webkit-input-placeholder {
+    color: rgb(216, 216, 216);
+}
+input::-moz-placeholder {
+    color: rgb(216, 216, 216);
+}
+input:-moz-placeholder {
+    color: rgb(216, 216, 216);
+}
+.dyui_input-icon{
+    width: 30px;
+}
+.dyui_input-left-icon{
+    left: 12px;
+}
+.dyui_input-prefix>.dyui_input-left{
+    padding-left: 50px;
+}
+.dyui_input-icon,.dyui_input-code{
+    line-height: 46px;
+}
+.dyui_checkbox{
+    font-size: 16px;
+    color: rgb(216, 216, 216);
+}
+.dyui_checkbox-inner{
+    width: 22px;
+    height: 22px;
+    border: 1px solid #00f6ff;
+    background-color: rgb(5, 60, 72);
+}
+.dyui_checkbox-original[type="checkbox"]:checked + .dyui_checkbox-inner{
+    background-color: rgb(5, 60, 72);
+    border-color: #00f6ff;
+}
+.dyui_checkbox-original[type="checkbox"] + .dyui_checkbox-inner:after{
+    height: 10px;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+}
+.dyui_checkbox-label{
+    font-size: 16px;
+}
+.dyui-btn-block{
+  border-radius: 4px;
+  background: rgb(21, 208, 204);
+  height: 50px;
+  line-height: 50px;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+}
+.dyui-hover-primary:focus, .dyui-hover-primary:hover {
+    background: rgba(21, 208, 204,0.8);
+}
+
+/* 大屏幕（大桌面显示器，小于等于 1400px） */
+@media screen and (max-width: 1400px) {
+    .login-bg {
+        top: 5%;
+    }
+    .login-main {
+        width: 400px;
+        padding: 30px 60px;
+        border: 1px solid #00f6ff;
+        top: 15%;
+    }
+    .dyui_input,.dyui_checkbox-label{
+        font-size: 14px;
+    }
+    .dyui_input-icon, .dyui_input-code {
+        line-height: 38px;
+    }
+    .dyui_input-inner, .dyui_input-code {
+        height: 40px;
+        font-size: 14px;
+    }
+    .dyui-btn-block {
+        border-radius: 4px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+    }
+}

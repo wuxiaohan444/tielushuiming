@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/animate.min.css'">
+    <link rel="stylesheet" type="text/css" href="css/dyui.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/dyui.css'">
+    <link rel="stylesheet" type="text/css" href="css/frame.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/frame.css'">
+    <link rel="stylesheet" type="text/css" href="css/report-team.css"
+          th:href="${#httpServletRequest.getContextPath()}+'/css/report-team.css'">
+    <title>个人报告</title>
+</head>
+<body>
+<div th:include="common::base"></div>
+<!-- 背景图 -->
+<div class="bg_img">
+    <img src="images/bg1.png" th:src="${#httpServletRequest.getContextPath()}+'/images/bg1.png'">
+</div>
+
+<!-- 头部 -->
+<div class="header">
+    <div class="header-main clearfix">
+        <div class="logo fl">
+            <a href="javascript:;">广铁集团</a>
+        </div>
+        <div class="header-con">
+            <div class="header-menu">
+                <ul class="clearfix">
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="index.html">首页</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="report-per.html">个人报告</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-bg">
+                            <img src="../static/images/headbg1.png"
+                                 th:src="${#httpServletRequest.getContextPath()}+'/images/headbg1.png'">
+                            <div class="hear-bg-main">睡眠检测和无干扰叫班系统</div>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="report-team.html">团队报告</a>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="hear-text">
+                            <a href="menu.html">设置</a>
+                        </div>
+                    </li>
+                    <li class="fl quit">
+                        <div class="hear-text">
+                            <a href="javascript:;">退出</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="user_info">
+                    <img src="" th:src="${#httpServletRequest.getContextPath()}+'/images/header1.png'" alt="">
+                    <span>张三</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 内容 -->
+<div class="wapper">
+    <div class="main">
+        <!-- 左侧 -->
+        <div class="left">
+            <div class="horn horn-top-left"></div>
+            <div class="horn horn-top-right"></div>
+            <div class="horn horn-bottom-left"></div>
+            <div class="horn horn-bottom-right"></div>
+            <!-- 一级 -->
+            <div class="box">
+                <div class="conter">
+                    <div class="nav-item">
+                        <div class="nav-title">
+
+                        </div>
+                        <ul class="topList">
+                            <!--渲染-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 二级 -->
+            <div class="menu">
+                <div class="horn horn-top-right"></div>
+                <div class="horn horn-bottom-right"></div>
+                <div class="box">
+                    <div class="conter">
+                        <div class="pack">
+                            <ul class="menu-open">
+                                <li>
+                                    <a href="javascript:;">
+                                        <em></em>
+                                        <span>待乘室</span>
+                                    </a>
+                                    <ul class="takeRoom">
+                                        //渲染
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <em></em>
+                                        <span>外公寓</span>
+                                    </a>
+                                    <ul class="outerRoom">
+                                        //渲染
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中部 -->
+        <div class="con">
+            <div class="team-top">
+                <ul class="clearfix">
+                    <li class="fl">
+                        <div class="team-time time-month">
+                            <span class="time-text" data-time="">请选择月份</span>
+                            <span class="time-icon">
+                                    	<img src="images/down13.png"
+                                             th:src="${#httpServletRequest.getContextPath()}+'/images/down13.png'">
+                                    </span>
+                            <div class="time-main">
+                                <ul class="clearfix">
+                                    <li class="fl" data-time="1">
+                                        <span>1月</span>
+                                    </li>
+                                    <li class="fl" data-time="2">
+                                        <span>2月</span>
+                                    </li>
+                                    <li class="fl" data-time="3">
+                                        <span>3月</span>
+                                    </li>
+                                    <li class="fl" data-time="4">
+                                        <span>4月</span>
+                                    </li>
+                                    <li class="fl" data-time="5">
+                                        <span>5月</span>
+                                    </li>
+                                    <li class="fl" data-time="6">
+                                        <span>6月</span>
+                                    </li>
+                                    <li class="fl" data-time="7">
+                                        <span>7月</span>
+                                    </li>
+                                    <li class="fl" data-time="8">
+                                        <span>8月</span>
+                                    </li>
+                                    <li class="fl" data-time="9">
+                                        <span>9月</span>
+                                    </li>
+                                    <li class="fl" data-time="10">
+                                        <span>10月</span>
+                                    </li>
+                                    <li class="fl" data-time="11">
+                                        <span>11月</span>
+                                    </li>
+                                    <li class="fl" data-time="12">
+                                        <span>12月</span>
+                                    </li>
+                                </ul>
+                                <!--<div class="time-btn">-->
+                                <!--<a href="javascript:;" class="dyui-btn time-delete">清空</a>-->
+                                <!--<a href="javascript:;" class="dyui-btn time-now">现在</a>-->
+                                <!--<a href="javascript:;" class="dyui-btn time-yes">确定</a>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="team-time time-quarter time-season">
+                            <span class="time-text" data-time="">请选择季度</span>
+                            <span class="time-icon">
+                                    	<img src="images/down13.png"
+                                             th:src="${#httpServletRequest.getContextPath()}+'/images/down13.png'">
+                                    </span>
+                            <div class="time-main">
+                                <ul class="clearfix">
+                                    <li class="fl" data-time="1">
+                                        <span>1季度</span>
+                                    </li>
+                                    <li class="fl" data-time="2">
+                                        <span>2季度</span>
+                                    </li>
+                                    <li class="fl" data-time="3">
+                                        <span>3季度</span>
+                                    </li>
+                                    <li class="fl" data-time="4">
+                                        <span>4季度</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="team-time time-half time-quarter">
+                            <span class="time-text" data-time="">请选择半年</span>
+                            <span class="time-icon">
+                                    	<img src="images/down13.png"
+                                             th:src="${#httpServletRequest.getContextPath()}+'/images/down13.png'">
+                                    </span>
+                            <div class="time-main">
+                                <ul class="clearfix">
+                                    <li class="fl" data-time="1">
+                                        <span>上半年</span>
+                                    </li>
+                                    <li class="fl" data-time="2">
+                                        <span>下半年</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="team-time time-year">
+                            <span class="time-text" data-time="">请选择年度</span>
+                            <span class="time-icon">
+                                    	<img src="images/down13.png"
+                                             th:src="${#httpServletRequest.getContextPath()}+'/images/down13.png'">
+                                    </span>
+                            <div class="time-main">
+                                <div class="time-top clearfix">
+                                    		<span class="time-left fl">
+                                    			<img src="images/left3.png"
+                                                     th:src="${#httpServletRequest.getContextPath()}+'/images/left3.png'">
+                                    		</span>
+                                    <span class="time-top-info fl">2012-2020</span>
+                                    <span class="time-right fr">
+                                    			<img src="images/right3.png"
+                                                     th:src="${#httpServletRequest.getContextPath()}+'/images/right3.png'">
+                                    		</span>
+                                </div>
+                                <ul class="clearfix">
+                                    <li class="fl" data-time="2012">
+                                        <span>2012</span>
+                                    </li>
+                                    <li class="fl" data-time="2013">
+                                        <span>2013</span>
+                                    </li>
+                                    <li class="fl" data-time="2014">
+                                        <span>2014</span>
+                                    </li>
+                                    <li class="fl" data-time="2015">
+                                        <span>2015</span>
+                                    </li>
+                                    <li class="fl" data-time="2016">
+                                        <span>2016</span>
+                                    </li>
+                                    <li class="fl" data-time="2017">
+                                        <span>2017</span>
+                                    </li>
+                                    <li class="fl" data-time="2018">
+                                        <span>2018</span>
+                                    </li>
+                                    <li class="fl" data-time="2019">
+                                        <span>2019</span>
+                                    </li>
+                                    <li class="fl" data-time="2020">
+                                        <span>2020</span>
+                                    </li>
+                                </ul>
+                                <!--<div class="time-btn">-->
+                                <!--<a href="javascript:;" class="dyui-btn time-delete">清空</a>-->
+                                <!--<a href="javascript:;" class="dyui-btn time-now">现在</a>-->
+                                <!--<a href="javascript:;" class="dyui-btn time-yes">确定</a>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="team-time rest">
+                            <button type="button" class="dyui-btn">重置</button>
+                        </div>
+                    </li>
+                    <li class="fl">
+                        <div class="team-time search">
+                            <button type="button" class="dyui-btn">搜索</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="team-main">
+                <div class="horn horn-top-left"></div>
+                <div class="horn horn-top-right"></div>
+                <div class="horn horn-bottom-left"></div>
+                <div class="horn horn-bottom-right"></div>
+                <div class="box">
+                    <div class="conter">
+                        <div class="team-info">
+                            <div class="team-info-main">
+                                <div class="team-title">机车乘务睡眠监测和无干扰叫班系统报告（团体）</div>
+                                <div class="team-info-head clearfix">
+                                    <div class="team-head-main fl">
+                                        <p>单位名称：<span class="company_name"></span></p>
+                                    </div>
+                                    <div class="team-head-main fl">
+                                        <p>时间范围：<span class="time_horizon">2019年全年</span></p>
+                                    </div>
+                                </div>
+                                <div class="personal-item-title">基本信息</div>
+                                <div class="team-table">
+                                    <table>
+                                        <tbody class="sheet">
+                                        <!--渲染-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="team-img clearfix">
+                                    <div class="team-item fl">
+                                        <div id="round1" style="height: 200px"></div>
+                                    </div>
+                                    <div class="team-item fl">
+                                        <div id="round2" style="height: 200px"></div>
+                                    </div>
+                                </div>
+                                <div class="personal-item-title">同比趋势图</div>
+                                <div class="team-img">
+                                    <div id="broken1" style="height: 250px"></div>
+                                </div>
+                                <div class="personal-item-title">环比趋势图</div>
+                                <div class="team-img">
+                                    <div id="broken2" style="height: 250px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--机务段-->
+<script type="text/html" id="topList">
+    {{each data v i}}
+    <li class="{{i===0?'active':''}} trs" data-id="{{data[i].id}}" data-dept="{{data[i].depttype}}">
+        <a href="javascript:;">{{data[i].name}}</a>
+    </li>
+    {{/each}}
+</script>
+<!--待乘室-->
+<script type="text/html" id="takeRoom">
+    {{each data v i}}
+    <li data-id="{{data[i].id}}">
+        <a href="javascript:;">{{data[i].name}}</a>
+    </li>
+    {{/each}}
+</script>
+<!--外公寓-->
+<script type="text/html" id="outerRoom">
+    {{each data v i}}
+    <li data-id="{{data[i].id}}">
+        <a href="javascript:;">{{data[i].name}}</a>
+    </li>
+    {{/each}}
+</script>
+<!--头部表格-->
+<script type="text/html" id="sheet">
+    <tr>
+        <td>总人数</td>
+        <td>{{totaldriver}}</td>
+        <td>总床位数</td>
+        <td>{{totalbed}}</td>
+        <td>使用人数</td>
+        <td>{{totalusedriver}}</td>
+        <td>使用次数</td>
+        <td>{{totalusetime}}</td>
+    </tr>
+    <tr>
+        <td>人均使用时长</td>
+        <td>{{avgusetime}}</td>
+        <td>人均睡眠时长</td>
+        <td>{{avgsleept}}</td>
+        <td>人均睡眠效率</td>
+        <td>{{avgsleepeff}}%</td>
+        <td>入睡困难人数</td>
+        <td>{{sleeptroublecnt}}</td>
+    </tr>
+    <tr>
+        <td>自动叫班次数</td>
+        <td>{{autocallwakecnt}}</td>
+        <td>人工叫班时长</td>
+        <td>{{artificalcallwakecnt}}</td>
+        <td>自动叫班准确率</td>
+        <td>{{ratioautocallwake}}%</td>
+        <td>预警次数</td>
+        <td>{{warncnt}}</td>
+    </tr>
+    <tr>
+        <td>人均浅睡时长</td>
+        <td>{{avgqian}}</td>
+        <td>人均浅睡时长百分比</td>
+        <td>{{ratioqian}}%</td>
+        <td>人均深睡时长</td>
+        <td>{{avgShen}}</td>
+        <td>人均深睡时间百分比</td>
+        <td>{{ratioshen}}%</td>
+    </tr>
+</script>
+
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/jquery-3.1.1.min.js'"></script>
+<script type="text/javascript" src="js/template-web.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/template-web.js'"></script>
+<script type="text/javascript" src="../static/js/echarts.common.min.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/echarts.common.min.js'"></script>
+<script type="text/javascript" src="js/common.js"
+        th:src="${#httpServletRequest.getContextPath()}+'/js/common.js'"></script>
+<script type="text/javascript">
+    /*<![CDATA[*/
+    let timeMonth = $(".time-month .time-text");
+    let timeSeason = $(".time-season .time-text");
+    let timeHalf = $(".time-half .time-text");
+    let timeYear = $(".time-year .time-text");
+
+    //重置
+    function rest() {
+        timeMonth.text("请选择月份");
+        timeMonth.attr("data-time", "");
+        timeSeason.text("请选择季度");
+        timeSeason.attr("data-time", "");
+        timeHalf.text("请选择半年");
+        timeHalf.attr("data-time", "");
+        timeYear.text("请选择年份");
+        var myDate = new Date();
+        var year = myDate.getFullYear(); //当前年份
+        timeYear.attr("data-time", year);
+    }
+
+    $(function () {
+        $(".nav-item>ul>li").hover(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+        $(".menu-open>li>a").click(function () {
+            $(this).find('em').toggleClass("on");
+            $(this).parents("li").siblings("li").find('a').find("em").removeClass('on');
+            $(this).siblings('ul').slideToggle();
+            $(this).parents("li").siblings("li").find('ul').slideUp();
+        });
+        time();
+
+        function time() {
+            var myDate = new Date();
+            var year = myDate.getFullYear(); //当前年份
+            $(".time_horizon").text(year + '年全年');
+            $(".time-year .time-text").attr("data-time", year);
+            var month = myDate.getMonth() + 1; //当前月份
+            // 下拉
+            $(".team-top>ul>li>.team-time>.time-text").click(function () {
+                $(this).siblings(".time-main").slideToggle(300);
+                $(this).parents(".team-time").parent("li").siblings().find(".time-main").slideUp(300).siblings('.time-icon').find("img").attr("src", "images/down13.png");
+
+            });
+            // 文字
+            $(".time-main>ul>li").click(function () {
+                $(this).addClass("on").siblings().removeClass("on");
+                var timeText = $(this).find("span").text();
+                $(this).parents(".time-main").siblings(".time-text").text(timeText);
+                $(this).parents(".time-main").slideUp(300);
+            });
+            // 清空
+            $(".time-delete").click(function () {
+                $(this).parent(".time-btn").siblings('ul').find("li").removeClass('on');
+                $(this).parents(".time-main").siblings('.time-text').text("请选择");
+            });
+            // 当前月份
+            $(".time-month .time-now").click(function () {
+                $(".time-month .time-main>ul>li").eq(month - 1).addClass('on').siblings().removeClass('on');
+                $(".time-month .time-text").text($(".time-month .time-main>ul>li").eq(month - 1).text());
+            });
+            // 当前年份
+            $(".time-year .time-now").click(function () {
+                var yearLi = $(".time-year .time-main>ul>li");
+                for (var i = 0; i < yearLi.length; i++) {
+                    if (year == $(yearLi[i]).find("span").text()) {
+                        $(".time-year .time-text").text($(yearLi[i]).find("span").text());
+                        $(yearLi[i]).addClass("on").siblings().removeClass("on");
+                        return;
+                    }
+                }
+            });
+            // 确定
+            $(".time-yes").click(function () {
+                $(".time-main").slideUp(300);
+            });
+
+            // 年份切换
+            $(".time-year .time-left").click(function () {
+                var yearLi = $(".time-year .time-main>ul>li");
+                for (var i = 0; i < yearLi.length; i++) {
+                    (function (i) {
+                        $(yearLi[i]).find("span").text($(yearLi[i]).find("span").text() - 9);
+                        $(yearLi[i]).attr("data-time", $(yearLi[i]).find("span").text());
+                    }(i))
+                }
+
+                $(".time-top-info").text($(yearLi[0]).find("span").text() + "-" + $(yearLi[8]).find("span").text())
+            });
+            $(".time-year .time-right").click(function () {
+                var yearLi = $(".time-year .time-main>ul>li");
+                for (var i = 0; i < yearLi.length; i++) {
+                    (function (i) {
+                        $(yearLi[i]).find("span").text(+($(yearLi[i]).find("span").text()) + 9);
+                        $(yearLi[i]).attr("data-time", $(yearLi[i]).find("span").text())
+                    }(i))
+                }
+                $(".time-top-info").text($(yearLi[0]).find("span").text() + "-" + $(yearLi[8]).find("span").text())
+            })
+        }
+
+        //重置
+        $(".rest").on("click", function () {
+            rest();
+        });
+        //选择月份
+        $(".time-month .time-main ul li").on("click", function () {
+            timeMonth.attr("data-time", $(this).attr("data-time"));
+            timeSeason.attr("data-time", '');
+            timeSeason.text("请选择季度");
+            timeHalf.attr("data-time", '');
+            timeHalf.text("请选择半年")
+        });
+        //选择季度
+        $(".time-season .time-main ul li").on("click", function () {
+            timeSeason.attr("data-time", $(this).attr("data-time"));
+            timeMonth.attr("data-time", '');
+            timeMonth.text("请选择月份");
+            timeHalf.attr("data-time", '');
+            timeHalf.text("请选择半年")
+        });
+        //选择半年
+        $(".time-half .time-main ul li").on("click", function () {
+            timeHalf.attr("data-time", $(this).attr("data-time"));
+            timeSeason.attr("data-time", '');
+            timeSeason.text("请选择季度");
+            timeMonth.attr("data-time", '');
+            timeMonth.text("请选择月份");
+        });
+        //选择年份
+        $(".time-year .time-main ul li").on("click", function () {
+            timeYear.attr("data-time", $(this).attr("data-time"));
+        });
+
+    });
+
+    $(function () {
+        let year = $(".time-year .time-text").attr("data-time"); //当前年份
+        let halfYear = '', quarter = "", month = "", siteId = "";
+        $.ajax({
+            url: IP + "/dept/dataControl",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data;
+                    let newData = [];
+                    if (data.hasOwnProperty('1')) {
+                        newData = data[1];
+                    } else {
+                        newData.push(data)
+                    }
+                    let html = template("topList", {data: newData});
+                    $(".topList").html(html);
+                    $(".topList li").hover(function () {
+                        $(this).addClass("active").siblings().removeClass("active");
+                        if ($(this).attr("data-dept") == 1) {  //如果depttype等于1时，触发hover
+                            getList1($(this).attr("data-id"));
+                        }
+                    });
+                    $(".topList li").on("click", function () {
+                        $(".menu").hide();
+                        getDetails($(this).attr("data-id"), $(this).text());
+                    });
+                    siteId = newData[0].id;
+                    $(".company_name").text(newData[0].name);
+                    getBaseInfo()
+                } else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                } else {
+                    alert(res.data)
+                }
+            },
+        });
+
+        //待乘室&外公寓
+        function getList1(id) {
+            $.ajax({
+                url: IP + "/dept/selectLeafs",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    id: id,
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        $(".menu").fadeIn(300);
+                        let data = res.data;
+                        let takeRoom, outerRoom;
+                        for (let key in data) {
+                            if (key === '2') {
+                                takeRoom = data[key]
+                            } else if (key === '3') {
+                                outerRoom = data[key]
+                            }
+                        }
+                        $(".takeRoom").html(template("takeRoom", {data: takeRoom}));
+                        $(".outerRoom").html(template("outerRoom", {data: outerRoom}));
+                        $(".takeRoom li").on("click", function () {
+                            $(".menu").hide();
+                            getDetails($(this).attr("data-id"), $(this).text());
+                        });
+                        $(".outerRoom li").on("click", function () {
+                            $(".menu").hide();
+                            getDetails($(this).attr("data-id"), $(this).text());
+                        });
+                        $(".menu").hover(function () {
+                            $(this).show();
+                        }, function () {
+                            $(this).fadeOut(300);
+                        })
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        alert(res.data)
+                    }
+                },
+            });
+        }
+
+        //点击选中地点
+        function getDetails(id, text) {
+            $(".company_name").text(text);
+            rest();
+            siteId = id;
+            getBaseInfo(id);
+        }
+
+        function getBaseInfo() {
+            month = timeMonth.attr("data-time");
+            quarter = timeSeason.attr("data-time");
+            halfYear = timeHalf.attr("data-time");
+            year = timeYear.attr("data-time");
+            if (month !== '') {
+                $(".time_horizon").text(year + '年' + month + '月');
+            } else if (quarter !== '') {
+                $(".time_horizon").text(year + '年' + quarter + '季度');
+            } else if (halfYear !== '') {
+                switch (halfYear) {
+                    case '1':
+                        $(".time_horizon").text(year + '年上半年');
+                        break;
+                    case '2':
+                        $(".time_horizon").text(year + '年下半年');
+                }
+            } else {
+                $(".time_horizon").text(year + '年全年');
+            }
+            //基本信息
+            $.ajax({
+                url: IP + "/team/baseInfo",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    id: siteId,
+                    year: year,
+                    halfYear: halfYear,
+                    quarter: quarter,
+                    month: month
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let data = res.data;
+                        for (let key in data) {
+                            if (data[key] == null) data[key] = 0;
+                        }
+                        data.ratioautocallwake = (data.ratioautocallwake * 100).toFixed(2);
+                        data.ratioqian = (data.ratioqian * 100).toFixed(2);
+                        data.ratioshen = (data.ratioshen * 100).toFixed(2);
+                        data.avgsleepeff = data.avgsleepeff;
+                        let html = template("sheet", data);
+                        $(".sheet").html(html)
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        alert(res.data)
+                    }
+                },
+            });
+            //睡眠效率示意图与入睡时长示意图数据
+            $.ajax({
+                url: IP + "/team/pieInfo",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    id: siteId,
+                    year: year,
+                    halfYear: halfYear,
+                    quarter: quarter,
+                    month: month
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let pieSleepEff = res.data.pieSleepEff;
+                        let pieSleepTime = res.data.pieSleepTime;
+                        let pieSleepEffData = [
+                            {value: pieSleepEff.lowSleepEffCnt, name: '小于60%'},
+                            {value: pieSleepEff.middleSleepEffCnt, name: '60-80%'},
+                            {value: pieSleepEff.hightSleepEffCnt, name: '大于80%'},
+                        ];
+                        round1(pieSleepEffData);
+                        let pieSleepTimeData = [
+                            {value: pieSleepTime.lowSleepTimeCnt, name: '小于15分钟'},
+                            {value: pieSleepTime.middleSleepTimeCnt, name: '15-30分钟'},
+                            {value: pieSleepTime.hightSleepTimeCnt, name: '大于30分钟'},
+                        ];
+                        round2(pieSleepTimeData);
+                    }else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        alert(res.data)
+                    }
+                },
+            });
+            // 同比趋势图数据
+            $.ajax({
+                url: IP + "/team/tbTrend",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    id: siteId,
+                    year: year,
+                    halfYear: halfYear,
+                    quarter: quarter,
+                    month: month
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let data = res.data;
+                        console.log(data);
+                        let dataX = [], dataY = [];
+                        getFormat(data, dataX, dataY);
+                        broken1(dataX, dataY);
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        alert(res.data)
+                    }
+                },
+            });
+            //环比趋势图数据
+            $.ajax({
+                url: IP + "/team/hbTrend",
+                type: "get",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    id: siteId,
+                    year: year,
+                    halfYear: halfYear,
+                    quarter: quarter,
+                    month: month
+                },
+                beforeSend: function (xhr) {
+                    xhr.withCredentials = true;
+                },
+                success: function (res) {
+                    if (res.code === 0) {
+                        let data = res.data;
+                        let dataX = [], data1 = [], data2 = [], data3 = [];
+                        getFormat(data[0], dataX, data1);
+                        getFormat(data[1], [], data2);
+                        getFormat(data[2], [], data3);
+                        broken2(dataX, data1, data2, data3);
+                    } else if (res.code === 1002) {
+                        window.location.href = IP + "/login.html"
+                    } else {
+                        alert(res.data)
+                    }
+                },
+            });
+        }
+
+        function getFormat(data, dataX, dataY) {
+            for (let i = 0; i < data.length; i++) {
+                if (data[i] === null) {
+                    dataX.push(i + 1);
+                    dataY.push(0)
+                } else {
+                    dataX.push(Object.keys(data[i]));
+                    dataY.push(data[i][Object.keys(data[i])])
+                }
+            }
+        }
+
+        // 饼状图
+        function round1(data) {
+            var dom = document.getElementById("round1");
+            var myChart = echarts.init(dom, 'light');
+            var app = {};
+            option = null;
+            option = {
+                color: ['#F5AB5C', '#3ED1B0', '#4870D5'],
+                title: {
+                    text: '睡眠效率示意图',
+                    x: 'center'
+                },
+                legend: {
+                    bottom: 0,
+                    left: 'center',
+                    data: ['小于60%', '60-80%', '大于80%']
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        radius: '50%',
+                        center: ['50%', '50%'],
+                        data: data,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        },
+                        label: {
+                            normal: {
+                                position: 'outer',
+                                formatter: '{c}人'
+                            }
+                        }
+                    }
+                ]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+
+        function round2(data) {
+            var dom = document.getElementById("round2");
+            var myChart = echarts.init(dom, 'light');
+            var app = {};
+            option = null;
+            option = {
+                title: {
+                    text: '入睡时长示意图',
+                    x: 'center'
+                },
+                legend: {
+                    bottom: 0,
+                    left: 'center',
+                    data: ['小于15分钟', '15-30分钟', '大于30分钟']
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        radius: '50%',
+                        center: ['50%', '50%'],
+                        data: data,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        },
+                        label: {
+                            normal: {
+                                position: 'outer',
+                                formatter: '{c}人'
+                            }
+                        }
+                    }
+                ]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+
+        // 折线图
+        function broken1(dataX, data) {
+            var dom = document.getElementById("broken1");
+            var myChart = echarts.init(dom, 'light');
+            var app = {};
+            option = null;
+            option = {
+                title: {
+                    text: '睡\n眠\n效\n率',
+                    verticalAlign: "middle",
+                    y: "center",
+                    textStyle: {
+                        fontSize: 14,
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: dataX,
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            type: 'solid',
+                            color: '#cdcece',
+                        },
+                    },
+                },
+                yAxis: {
+                    type: 'value',
+                    min: 0,
+                    max: 100,
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            type: 'solid',
+                            color: '#cdcece',
+                        },
+                    },
+                    axisLabel: {
+                        formatter: '{value}%'
+                    }
+                },
+                series: [{
+                    data: data,
+                    type: 'line',
+                    symbol: 'none'
+                }],
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+
+        function broken2(dataX, data1, data2, data3) {
+            var dom = document.getElementById("broken2");
+            var myChart = echarts.init(dom, 'light');
+            var app = {};
+            option = null;
+            option = {
+                title: {
+                    text: '睡\n眠\n效\n率',
+                    verticalAlign: "middle",
+                    y: "center",
+                    textStyle: {
+                        fontSize: 14,
+                    }
+                },
+                legend: {
+                    bottom: 0,
+                    left: 'center',
+                    data: ['2017', '2018', '2019'],
+                    itemWidth: 50,
+                    itemHeight: 2
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: dataX,
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            type: 'solid',
+                            color: '#cdcece',
+                        },
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    min: 0,
+                    max: 100,
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            type: 'solid',
+                            color: '#cdcece',
+                        },
+                    },
+                    axisLabel: {
+                        formatter: '{value}%'
+                    }
+                },
+                series: [
+                    {
+                        name: '2017',
+                        symbol: 'none',
+                        type: 'line',
+                        stack: '',
+                        data: data1
+                    },
+                    {
+                        name: '2018',
+                        symbol: 'none',
+                        type: 'line',
+                        stack: '',
+                        data: data2
+                    },
+                    {
+                        name: '2019',
+                        symbol: 'none',
+                        type: 'line',
+                        stack: '',
+                        data: data3
+                    }
+                ]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+
+        //搜索
+        $(".search").on("click", function () {
+            getBaseInfo();
+        })
+    });
+    $(function () {
+        $.ajax({
+            url: IP + "/user/self",
+            type: "get",
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function (xhr) {
+                xhr.withCredentials = true;
+            },
+            success: function (res) {
+                if (res.code === 0) {
+                    let data = res.data[0];
+                    let headImg = data.headImg;
+                    if (headImg) {
+                        $(".user_info img").attr('src', IP + headImg);
+                    }
+                }else if (res.code === 1002) {
+                    window.location.href = IP + "/login.html"
+                }
+            },
+        });
+    })
+
+    /*]]>*/
+</script>
+</body>
+</html>
